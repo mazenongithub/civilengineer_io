@@ -1,15 +1,18 @@
 export function MyStylesheet() {
     return ({
-        
-         generalFlex: {
+
+        generalFlex: {
             display: 'flex',
             flexDirection: 'row',
         },
         alignCenter: {
             textAlign: 'center'
         },
-        marginLeft30:{
-            marginLeft:'30px'
+        marginLeft30: {
+            marginLeft: '30px'
+        },
+         marginLeft15: {
+            marginLeft: '15px'
         },
         headerStyle: {
             fontFamily: 'Goldman',
@@ -30,17 +33,17 @@ export function MyStylesheet() {
             display: 'grid',
             gridRowGap: '15px'
         },
-        noDisplay:{
-            display:'none'
+        noDisplay: {
+            display: 'none'
         },
         doublegrid: {
             gridTemplateColumns: '50% 50%'
         },
-        topMargin30:{
-            marginTop:'30px'
+        topMargin30: {
+            marginTop: '30px'
         },
-        topMargin10:{
-            marginTop:'10px'
+        topMargin10: {
+            marginTop: '10px'
         },
         triplegrid: {
             gridTemplateColumns: '33% 33% 33%'
@@ -64,14 +67,14 @@ export function MyStylesheet() {
         generalLinkonly: {
             textDecoration: 'none',
         },
-        highlightbutton:{
-            backgroundColor:'#A3A7BF',
-            opacity:'50%',
+        highlightbutton: {
+            backgroundColor: '#A3A7BF',
+            opacity: '50%',
 
         },
-        adjustButtonSize:{
-            width:'190px',
-            height:'60px'
+        adjustButtonSize: {
+            width: '190px',
+            height: '60px'
         },
         generalLink: {
             textDecoration: 'none',
@@ -95,6 +98,9 @@ export function MyStylesheet() {
             minHeight: '110px',
             border: '1px solid',
             color: '#000000'
+        },
+        themeColor: {
+            color: '#244f74'
         },
         largeFont: {
             fontSize: '50px',
@@ -126,7 +132,9 @@ export function MyStylesheet() {
         boldFont: {
             fontWeight: '700'
         },
-
+        mediumWeight: {
+            fontWeight: '500'
+        },
         marginLeft90: {
             marginLeft: '90px'
         },
@@ -142,14 +150,20 @@ export function MyStylesheet() {
         generalContainer: {
             display: 'block'
         },
+        regularColor:{
+            color:'#4b4b4b'
+        },
         marginLeft60: {
             marginLeft: '60px'
         },
         generalFont: {
-            fontFamily: "'Lato', sans-serif"
+            fontFamily: "Inter, sans-serif"
         },
         padding10: {
             padding: '10px'
+        },
+        padding15: {
+            padding: '15px'
         },
         generalPadding: {
             padding: '5px'
@@ -178,13 +192,14 @@ export function MyStylesheet() {
             border: '1px solid',
             borderRadius: '5px'
         },
-        navButton:{
-            backgroundColor:'#f2f2f3'
+        navButton: {
+            backgroundColor: '#f2f2f3'
         },
 
         generalButton: {
             border: '0px',
-         
+            backgroundColor:'#FFFFFF'
+
         },
         activeButton: {
             border: '0px',

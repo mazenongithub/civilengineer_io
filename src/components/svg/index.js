@@ -55,3 +55,17 @@ export function dropDown() {
   </g>
 </svg>)
 }
+
+export function linkArrow() {
+  return(<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79.75 36.69">
+  <defs>
+  
+  </defs>
+  <g id="png">
+    <g>
+      <rect className="linkArrow-1" y="9.58" width="55.66" height="17.54"/>
+      <polygon className="linkArrow-1" points="79.75 18.35 51.36 0 51.36 36.69 79.75 18.35"/>
+    </g>
+  </g>
+</svg>)
+}
