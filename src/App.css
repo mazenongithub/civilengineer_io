@@ -3,7 +3,11 @@
 ———————————————————— */
 body {
   margin: 0;
-  font-family: Inter, sans-serif;
+
+}
+
+.linkArrow-1 {
+  fill: #4b4b4b;
 }
 
 /* ————————————————————
@@ -12,6 +16,7 @@ body {
 .header {
   background: #f2f2f3;
   border-bottom: 1px solid #d8dde3;
+  font-family: Inter, sans-serif;
 }
 
 /* Top bar layout (mobile and desktop) */

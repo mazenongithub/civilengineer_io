@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { dropDown } from "./svg";
 import { MyStylesheet } from "./styles";
-
+import { Link } from 'react-router-dom';
 class MobileNav extends Component {
   state = {
     solutionsOpen: false
@@ -32,19 +32,19 @@ class MobileNav extends Component {
 
             {solutionsOpen && (
               <div className="accordion-content">
-                <a href="#">Geotechnical</a>
-                <a href="#">Engineering Design</a>
-                <a href="#">Project Management</a>
-                <a href="#">Construction Management</a>
+                <span>Geotechnical</span>
+                <span>Engineering Design</span>
+                <span>Project Management</span>
+                <span>Construction Management</span>
               </div>
             )}
 
-            <a href="#">Custom Apps</a>
-            <a href="#">How It Works</a>
-            <a href="#">Pricing</a>
-            <a href="#">About</a>
+            <span>Custom Apps</span>
+            <span>How It Works</span>
+            <Link to={'/'}  style={{...styles.generalLink}}>Home</Link>
+            <Link to={'/about'} style={{...styles.generalLink}}>About</Link>
 
-            <a href="#" className="cta mobile-cta">Get Started</a>
+            <span className="cta mobile-cta">Get Started</span>
           </nav>
         </aside>
       </>

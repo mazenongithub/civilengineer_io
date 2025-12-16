@@ -5,13 +5,18 @@ export function MyStylesheet() {
             display: 'flex',
             flexDirection: 'row',
         },
+        centerDiv: {
+            justifyContent: "center",
+            alignItems: "center"
+        },
+       
         alignCenter: {
             textAlign: 'center'
         },
         marginLeft30: {
             marginLeft: '30px'
         },
-         marginLeft15: {
+        marginLeft15: {
             marginLeft: '15px'
         },
         headerStyle: {
@@ -89,6 +94,9 @@ export function MyStylesheet() {
         width80: {
             width: '80%'
         },
+         width90: {
+            width: '80%'
+        },
         addBorderRadius5: {
             borderRadius: '5px'
         },
@@ -150,8 +158,8 @@ export function MyStylesheet() {
         generalContainer: {
             display: 'block'
         },
-        regularColor:{
-            color:'#4b4b4b'
+        regularColor: {
+            color: '#4b4b4b'
         },
         marginLeft60: {
             marginLeft: '60px'
@@ -161,6 +169,9 @@ export function MyStylesheet() {
         },
         padding10: {
             padding: '10px'
+        },
+        padding5:{
+            padding:'5px'
         },
         padding15: {
             padding: '15px'
@@ -198,7 +209,7 @@ export function MyStylesheet() {
 
         generalButton: {
             border: '0px',
-            backgroundColor:'#FFFFFF'
+            backgroundColor: '#FFFFFF'
 
         },
         activeButton: {

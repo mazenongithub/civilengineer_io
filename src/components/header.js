@@ -4,6 +4,7 @@ import MobileNav from "./MobileNav";
 import { Logo } from "./svg";
 import { MyStylesheet } from './styles'
 
+
 class Header extends Component {
     constructor(props) {
         super(props)

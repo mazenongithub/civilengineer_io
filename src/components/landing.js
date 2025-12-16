@@ -35,20 +35,13 @@ class Landing extends Component {
 
         return (
             <div style={{ ...styles.generalContainer }}>
-                <div style={{ ...styles.generalContainer,  ...styles.alignCenter, ...styles.topMargin10, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>Engineering Solutions Built for Modern Construction</span>
+                <div style={{ ...styles.generalContainer,  ...styles.alignCenter, ...styles.topMargin10, ...styles.generalFont, ...styles.bottomMargin15, ...styles.marginLeft15 }}>
+                    <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>Delivering Smart Engineering Reports Online</span>
                 </div>
                 <div style={{ ...styles.generalContainer, ...styles.generalFont,  ...styles.padding15 }}>
-                    <span style={{ ...regularFont }}>CivilEngineer.io helps engineers, contractors, agencies, and project managers plan, design, and deliver successful projects—supported by modern tools, automated workflows, and professional engineering services.</span>
+                    <span style={{ ...regularFont }}>Our mission is to help engineers, contractors, agencies, and project managers plan, design, and deliver successful projects—supported by modern tools, automated workflows, and professional engineering services.</span>
                 </div>
-                <div style={{ ...styles.generalFlex, ...styles.marginLeft15, ...styles.bottomMargin15 }}>
-                    <div style={{ ...styles.flex1, ...styles.generalFont, ...styles.regularColor }}>
-                        <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Get Started </u></span></Link>
-                    </div>
-                    <div style={{ ...styles.flex1, ...styles.generalFont, ...styles.regularColor }}>
-                        <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Explore Solutions</u></span></Link>
-                    </div>
-                </div>
+                
                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
                     <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>Who We Help</span>
                 </div>
@@ -57,7 +50,7 @@ class Landing extends Component {
                     <ul><li style={{ ...regularFont }}>Geotechnical Clients</li></ul>
                 </div>
                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...regularFont }}>Whether you need soil reports, analysis, foundation recommendations, or field documentation—we provide fast, accurate geotechnical support.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
+                    <span style={{ ...regularFont }}>Whether you need soil reports, analysis, foundation recommendations, or field documentation—we provide fast, accurate geotechnical support. Custom Geotechnical reporting program setting the bar leading the industry providing client portal instantly recieves needed reports.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
                 </div>
                
 
@@ -65,7 +58,7 @@ class Landing extends Component {
                     <ul><li style={{ ...regularFont }}>Engineering Firms and Municipalities</li></ul>
                 </div>
                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...regularFont }}>Automated design tools, clear specifications, and cost estimating workflows that support permitting, planning, and infrastructure design.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
+                    <span style={{ ...regularFont }}>Smart specifications writer, full customizations, spec sections, quantity take-offs, and bid schedules. Supports permitting, planning, and infrastructure design. Created for Spec writers, engineers, and cost estimators. <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
                 </div>
               
 
@@ -73,7 +66,7 @@ class Landing extends Component {
                     <ul><li style={{ ...regularFont }}>Project Managers</li></ul>
                 </div>
                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...regularFont }}>Manage schedules, tasks, risks, and communication with a simple, powerful PM dashboard—or hire us to manage your entire project.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
+                    <span style={{ ...regularFont }}>Build a team, define roles, create milestone dates, manage schedules, tasks, risks, and communication with a simple, powerful PM dashboard—or hire us to manage your entire project.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
                 </div>
                
 
@@ -81,7 +74,7 @@ class Landing extends Component {
                     <ul><li style={{ ...regularFont }}>Construction Companies</li></ul>
                 </div>
                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...regularFont }}>Coordinate your crews, track progress, log field reports, manage materials, and keep your project on schedule. Join our contractor network.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
+                    <span style={{ ...regularFont }}>We provide field engineering service. Use our program to manage the job. Work as part of a team on a project. Company components include equipment, labor, and materials. Project components cover the job entirely including schedule, actual, bid schedule, and bid. Creates database of actual unit prices performed on each job. Join our contractor network to get added onto projects. All final work orders get signed and approved and Contactor gets paid ! Guarantees for profit for every job. Full customization available per company <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
                 </div>
               
 
@@ -89,7 +82,7 @@ class Landing extends Component {
                     <ul><li style={{ ...regularFont }}>Businesses Needing Custom Software</li></ul>
                 </div>
                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15, ...styles.bottomMargin15 }}>
-                    <span style={{ ...regularFont }}>We build custom business management applications tailored to your workflow.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
+                    <span style={{ ...regularFont }}>You name it we build it. We are enthusiastic about using the web to solve businesses solutions. Hire us to create your own buisness application tailored to your business model. Reports, timesheets, easy invoice, accounting, plus more available and accessible online at your own custom url.    <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
                 </div>
 
                  <div style={{ ...styles.generalContainer,   ...styles.marginLeft15, ...styles.generalFont }}>

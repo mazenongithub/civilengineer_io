@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { dropDown } from "./svg";
 import { MyStylesheet } from "./styles";
+import { Link } from 'react-router-dom';
 
 class DesktopNav extends Component {
   render() {
@@ -20,8 +21,8 @@ class DesktopNav extends Component {
 
         <a href="#">Custom Apps</a>
         <a href="#">How It Works</a>
-        <a href="#">Pricing</a>
-        <a href="#">About</a>
+        <Link to={'/'}  style={{...styles.generalLink}}>Home</Link>
+        <Link to={'/about'} style={{...styles.generalLink}}>About</Link>
         <a href="#" className="cta">Get Started</a>
       </nav>
     );

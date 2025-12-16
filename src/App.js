@@ -1,24 +1,34 @@
 import React, { Component } from "react";
 import Header from "./components/header";
 import "./App.css";
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { MyStylesheet } from "./components/styles";
+import Landing from "./components/landing";
+import About from "./components/about";
+import { Link } from 'react-router-dom';
+import Footer from "./components/footer";
 class App extends Component {
-  render() {
-    return (
-      <div className="app">
-        <Header />
 
-        <main className="main-content">
-          {/* Page content goes here */}
-          <section className="hero">
-            <h1>Engineering Software for the Built World</h1>
-            <p>
-              Geotechnical, project management, engineering design, and
-              construction management applications — all in one platform.
-            </p>
-          </section>
-        </main>
-      </div>
+  render() {
+    const styles = MyStylesheet();
+
+    return (
+     
+        <div className="app">
+        <Header/>
+          <main className="main-content">
+          
+            {/* Page content goes here */}
+            <div style={{ ...styles.generalContainer }}>
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route exact path="/about" component={About} />
+              </Switch>
+            </div>
+          </main>
+          <Footer/>
+        </div>
+    
     );
   }
 }
