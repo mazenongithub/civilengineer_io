@@ -17,10 +17,10 @@ class MobileNav extends Component {
     const styles = MyStylesheet();
     const buttonWidth = {width:'26px'}
     return (
-      <>
-        {open && <div className="overlay" onClick={onClose} />}
+         <>
+      {open && <div className="overlay" onClick={onClose} />}
 
-        <aside className={`mobile-nav ${open ? "open" : ""}`}>
+      <aside className={`mobile-nav ${open ? "open" : ""}`}>
           <nav>
             <button
               className="accordion-toggle"
@@ -32,22 +32,22 @@ class MobileNav extends Component {
 
             {solutionsOpen && (
               <div className="accordion-content">
-                <span>Geotechnical</span>
-                <span>Engineering Design</span>
-                <span>Project Management</span>
-                <span>Construction Management</span>
+                <a href="#">Geotechnical</a>
+                <a href="#">Engineering Design</a>
+                <a href="#">Project Management</a>
+                <a href="#">Construction Management</a>
               </div>
             )}
 
-            <span>Custom Apps</span>
-            <span>How It Works</span>
+            <a href="#">Custom Apps</a>
+            <Link to={'/howitworks'}  style={{...styles.generalLink}}>How It Works</Link>
             <Link to={'/'}  style={{...styles.generalLink}}>Home</Link>
             <Link to={'/about'} style={{...styles.generalLink}}>About</Link>
 
-            <span className="cta mobile-cta">Get Started</span>
-          </nav>
-        </aside>
-      </>
+            <a href="#" className="cta mobile-cta">Get Started</a>
+            </nav>
+      </aside>
+    </>
     );
   }
 }

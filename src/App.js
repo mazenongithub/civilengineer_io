@@ -7,6 +7,7 @@ import Landing from "./components/landing";
 import About from "./components/about";
 import { Link } from 'react-router-dom';
 import Footer from "./components/footer";
+import HowItWorks from "./components/howitworks";
 class App extends Component {
 
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/about" component={About} />
+                <Route exact path="/howitworks" component={HowItWorks} />
               </Switch>
             </div>
           </main>

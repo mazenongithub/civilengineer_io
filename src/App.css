@@ -239,3 +239,152 @@ body {
   background: rgba(0, 0, 0, 0.35);
   z-index: 999;
 }
+
+       .geotech-1 {
+        stroke-width: 2px;
+      }
+
+      .geotech-1, .geotech-2, .geotech-3 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+      }
+
+      .geotech-1, .geotech-3 {
+        fill: none;
+      }
+
+      .geotech-4 {
+        letter-spacing: -.05em;
+      }
+
+      .geotech-5 {
+        letter-spacing: 0em;
+      }
+
+      .geotech-6 {
+        font-size: 30px;
+      }
+
+      .geotech-6, .geotech-7 {
+        fill: #4b4b4b;
+        font-family: Inter, sans-serif;
+        font-variation-settings: 'opsz' 14, 'wght' 400;
+      }
+
+      .geotech-2 {
+        fill: #231f20;
+        stroke-width: .75px;
+      }
+
+      .geotech-8 {
+        letter-spacing: -.02em;
+      }
+
+      .geotech-9 {
+        letter-spacing: -.06em;
+      }
+
+      .geotech-10 {
+        letter-spacing: 0em;
+      }
+
+      .geotech-11 {
+        letter-spacing: .02em;
+      }
+
+      .geotech-12 {
+        letter-spacing: -.01em;
+      }
+
+      .geotech-13 {
+        letter-spacing: -.02em;
+      }
+
+      .geotech-7 {
+        font-size: 20px;
+      }
+
+
+          .pm-1 {
+        stroke-width: 2px;
+      }
+
+      .pm-1, .pm-2, .pm-3 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+      }
+
+      .pm-1, .pm-3 {
+        fill: none;
+      }
+
+      .pm-4 {
+        letter-spacing: 8.08em;
+      }
+
+      .pm-5 {
+        letter-spacing: -.05em;
+      }
+
+      .pm-6 {
+        letter-spacing: 0em;
+      }
+
+      .pm-7 {
+        letter-spacing: 0em;
+      }
+
+      .pm-8 {
+        font-size: 30px;
+      }
+
+      .pm-8, .pm-9 {
+        fill: #4b4b4b;
+        font-family: Inter, sans-serif;
+        font-variation-settings: 'opsz' 14, 'wght' 400;
+      }
+
+      .pm-2 {
+        fill: #231f20;
+        stroke-width: .75px;
+      }
+
+      .pm-10 {
+        letter-spacing: -.02em;
+      }
+
+      .pm-11 {
+        letter-spacing: -.08em;
+      }
+
+      .pm-12 {
+        letter-spacing: -.06em;
+      }
+
+      .pm-13 {
+        letter-spacing: 0em;
+      }
+
+      .pm-14 {
+        letter-spacing: 0em;
+      }
+
+      .pm-15 {
+        letter-spacing: .02em;
+      }
+
+      .pm-16 {
+        letter-spacing: -.01em;
+      }
+
+      .pm-17 {
+        letter-spacing: -.03em;
+      }
+
+      .pm-18 {
+        letter-spacing: -.02em;
+      }
+
+      .pm-9 {
+        font-size: 20px;
+      }

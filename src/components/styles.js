@@ -94,6 +94,9 @@ export function MyStylesheet() {
         width80: {
             width: '80%'
         },
+          width50: {
+            width: '50%'
+        },
          width90: {
             width: '80%'
         },
@@ -237,6 +240,15 @@ export function MyStylesheet() {
         },
         flex5: {
             flex: 5
+        },
+         flex8: {
+            flex: 8
+        },
+          flex12: {
+            flex: 12
+        },
+           flex16: {
+            flex: 16
         },
         addMargin: {
             margin: '5px'

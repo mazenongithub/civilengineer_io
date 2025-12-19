@@ -20,7 +20,7 @@ class DesktopNav extends Component {
         </div>
 
         <a href="#">Custom Apps</a>
-        <a href="#">How It Works</a>
+        <Link to={'/howitworks'}  style={{...styles.generalLink}}>How It Works</Link>
         <Link to={'/'}  style={{...styles.generalLink}}>Home</Link>
         <Link to={'/about'} style={{...styles.generalLink}}>About</Link>
         <a href="#" className="cta">Get Started</a>

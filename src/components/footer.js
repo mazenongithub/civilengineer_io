@@ -3,7 +3,7 @@ import { MyStylesheet } from "./styles";
 
 class Footer extends Component {
 
-     constructor(props) {
+    constructor(props) {
         super(props);
         this.state = { render: '', width: 0, height: 0 }
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
@@ -24,23 +24,25 @@ class Footer extends Component {
 
     render() {
         const styles = MyStylesheet();
-        const minHeight = {height:'180px'}
+        const minHeight = this.state.width > 900
+            ? { height: '180px' }
+            : { height: '100px' };
 
-        return(<div style={{...styles.generalFlex, ...minHeight, ...styles.navButton, ...styles.topMargin30}}>
-                <div style={{...styles.flex1}}>
+        return (<div style={{ ...styles.generalFlex, ...minHeight, ...styles.navButton, ...styles.topMargin30 }}>
+            <div style={{ ...styles.flex1 }}>
                 &nbsp;
-                </div>
-                 <div style={{...styles.flex1}}>
+            </div>
+            <div style={{ ...styles.flex1 }}>
                 &nbsp;
-                </div>
-                 <div style={{...styles.flex1}}>
+            </div>
+            <div style={{ ...styles.flex1 }}>
                 &nbsp;
-                </div>
-                 <div style={{...styles.flex1}}>
+            </div>
+            <div style={{ ...styles.flex1 }}>
                 &nbsp;
-                </div>
-            
-            </div>)
+            </div>
+
+        </div>)
     }
 }
 export default Footer;
