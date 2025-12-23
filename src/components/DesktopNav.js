@@ -23,7 +23,7 @@ class DesktopNav extends Component {
         <Link to={'/howitworks'}  style={{...styles.generalLink}}>How It Works</Link>
         <Link to={'/'}  style={{...styles.generalLink}}>Home</Link>
         <Link to={'/about'} style={{...styles.generalLink}}>About</Link>
-        <a href="#" className="cta">Get Started</a>
+        <Link to={'/contactus'}  className="cta">Contact Us</Link>
       </nav>
     );
   }

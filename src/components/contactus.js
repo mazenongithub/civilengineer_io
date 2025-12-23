@@ -7,7 +7,7 @@ import { SaveContactUs } from './actions/api';
 class ContactUs extends Component {
     constructor(props) {
         super(props);
-        this.state = { render: '', width: 0, height: 0, open: false, fullname: 'mazen khenaisser', company: 'civilengineer.io', emailaddress: 'mazen@civilengineer.io', phonenumber: '916-823-1652', geotechnical: true, projectmanagement: true, design: true, construction: true, customapp: true, detail: 'message', message: '' }
+        this.state = { render: '', width: 0, height: 0, open: false, fullname: '', company: '', emailaddress: '', phonenumber: '', geotechnical: false, projectmanagement: false, design: false, construction: false, customapp: false, detail: '', message: '' }
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     }
     componentDidMount() {

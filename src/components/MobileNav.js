@@ -36,15 +36,15 @@ class MobileNav extends Component {
                 <a href="#">Engineering Design</a>
                 <a href="#">Project Management</a>
                 <a href="#">Construction Management</a>
+                <a href="#">Custom Apps</a>
               </div>
             )}
 
-            <a href="#">Custom Apps</a>
-            <Link to={'/howitworks'}  style={{...styles.generalLink}}>How It Works</Link>
-            <Link to={'/'}  style={{...styles.generalLink}}>Home</Link>
-            <Link to={'/about'} style={{...styles.generalLink}}>About</Link>
-
-            <a href="#" className="cta mobile-cta">Get Started</a>
+            
+            <Link onClick={onClose} to={'/howitworks'}  style={{...styles.generalLink}}>How It Works</Link>
+            <Link onClick={onClose} to={'/'}  style={{...styles.generalLink}}>Home</Link>
+            <Link onClick={onClose} to={'/about'} style={{...styles.generalLink}}>About</Link>
+            <Link onClick={onClose} to={'/contactus'} style={{...styles.generalLink}}>Contact Us</Link>
             </nav>
       </aside>
     </>
