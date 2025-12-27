@@ -91,6 +91,9 @@ export function MyStylesheet() {
         csiContainer: {
             maxWidth: '400px'
         },
+         width99: {
+            width: '99%'
+        },
         width80: {
             width: '80%'
         },

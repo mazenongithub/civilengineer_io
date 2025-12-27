@@ -123,10 +123,9 @@ class Landing extends Component {
                 </div>
                 <div style={{ ...styles.generalFlex, ...styles.marginLeft15, ...styles.bottomMargin15 }}>
                     <div style={{ ...styles.flex1, ...styles.generalFont, ...styles.regularColor }}>
-                        <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Get Started </u></span></Link>
-                    </div>
+                        &nbsp; </div>
                     <div style={{ ...styles.flex1, ...styles.generalFont, ...styles.regularColor }}>
-                        <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Contact Us</u></span></Link>
+                        <Link style={{ ...styles.generalLink }} to={'/contactus'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Contact Us</u></span></Link>
                     </div>
                 </div>
                

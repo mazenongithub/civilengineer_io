@@ -37,23 +37,24 @@ class About extends Component {
                 </div>
 
                 <div style={{...styles.generalContainer, ...styles.bottomMargin15}}>
-                    <div style={{...styles.generalContainer, ...photoClass, ...styles.marginAuto}}>&nbsp;</div>
+                    <div style={{...styles.generalContainer, ...photoClass, ...styles.marginAuto, ...styles.alignCenter, ...styles.centerDiv}}><img style={{...styles.width99, ...styles.marginAuto}} src={`${process.env.REACT_APP_SERVER_API}/uploads/images/portrait.jpg`} alt="Mazin Kenicer Professional Civil Engineer (PE) | Founder, civilengineer.io | Geotechnical, Design, & Construction Systems" /></div>
                 </div>
 
                  <div style={{...styles.generalContainer, ...styles.padding5, ...styles.generalFont, ...styles.width90, ...styles.marginAuto}}>
-                    <span style={{...regularFont}}>I am Mazen Khenaisser, P.E., and the founder of civilengineer.io. I have been developing online engineering applications since 2015. After graduating from San José State University with a degree in Civil and Environmental Engineering, I began my career in 2007 with the Federal Bureau of Reclamation, Division of Design and Construction, in Sacramento, California. There, I gained experience in engineering design and cost estimating, and later applied these methods to develop project management, design, and construction tools</span>
+                    <span style={{...regularFont}}>I am Mazin Kenicer, P.E., founder of civilengineer.io. I am a licensed civil engineer with a background in civil and environmental engineering and have been developing online engineering applications since 2015. </span>
+
                  </div>
                   <div style={{...styles.generalContainer, ...styles.padding5, ...styles.generalFont, ...styles.width90, ...styles.marginAuto}}>
-                    <span style={{...regularFont}}>After leaving government service, I gained additional experience working as a geotechnical consultant with GFK & Associates in Dublin, California. Over more than 25 years of industry practice, I compiled a collection of proven design methods and integrated them into a comprehensive geotechnical design program. These tools allow me to efficiently deliver professional reports to clients in need of geotechnical engineering services. </span>
+                    <span style={{...regularFont}}>My work focuses on transforming established engineering principles and real-world practice into practical, web-based tools. These applications are designed to help engineers and construction professionals streamline design, analysis, and documentation while maintaining accuracy, consistency, and professional standards. </span>
                  </div>
                   <div style={{...styles.generalContainer, ...styles.padding5, ...styles.generalFont, ...styles.width90, ...styles.marginAuto}}>
-                    <span style={{...regularFont}}>I am dedicated to developing this web platform into a growing suite of industry-ready applications that reflect best practices learned throughout my career. By using these tools, engineers and construction professionals can produce high-quality work efficiently and at a fair and reasonable cost. My goal is to help construction companies improve consistency, accuracy, and profitability on every project.  </span>
+                    <span style={{...regularFont}}>Over the course of my career, I have applied engineering judgment across design, construction, and quality control, which informs how these tools are built and used in practice. The goal of civilengineer.io is to provide industry-ready applications that support efficient workflows and reliable results at a fair and reasonable cost.  </span>
                  </div>
                  <div style={{...styles.generalContainer, ...styles.padding5, ...styles.generalFont, ...styles.width90, ...styles.marginAuto}}>
-                    <span style={{...regularFont}}>In addition to software development, I continue to work in construction as a project engineer, providing QA/QC services for clients on the projects I manage.  </span>
+                    <span style={{...regularFont}}>In addition to software development, I continue to work in construction, providing engineering and QA/QC support on active projects. This ongoing involvement ensures that the tools developed on this platform remain practical, relevant, and aligned with real project needs.  </span>
                  </div>
                  <div style={{...styles.generalContainer, ...styles.padding5, ...styles.generalFont, ...styles.width90, ...styles.marginAuto}}>
-                    <span style={{...regularFont}}>Thank you for visiting my site. I am committed to making civilengineer.io a valuable and successful resource for the engineering and construction community  </span>
+                    <span style={{...regularFont}}>Thank you for visiting my site. I am committed to making civilengineer.io a valuable and successful resource for the engineering and construction community.  </span>
                  </div>
             </div>)
     }
