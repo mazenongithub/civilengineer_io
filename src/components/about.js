@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { MyStylesheet } from './styles';
 import CivilEngineer from './civilengineer';
+import { Helmet } from 'react-helmet-async';
 
 
 class About extends Component {
@@ -32,6 +33,37 @@ class About extends Component {
         const photoClass = {border:'1px solid', width:'33%'}
 
         return(<div style={{ ...styles.generalContainer }}>
+
+            import { Helmet } from "react-helmet";
+
+<Helmet>
+  <title>
+    Mazin Kenicer, P.E. | California Civil Engineer & Founder of CivilEngineer.io
+  </title>
+
+  <meta
+    name="description"
+    content="Mazin Kenicer, P.E. is a licensed California Civil Engineer and founder of CivilEngineer.io, delivering geotechnical engineering, project management, design, and construction solutions through modern web-based engineering platforms."
+  />
+
+  <meta
+    name="keywords"
+    content="Mazin Kenicer, Civil Engineer California, California PE Civil Engineer, Geotechnical Engineer California, Project Management Engineering, Civil Engineering Software, CivilEngineer.io"
+  />
+
+  <meta name="author" content="Mazin Kenicer, P.E." />
+
+  <meta property="og:title" content="Mazin Kenicer, P.E. | California Civil Engineer" />
+  <meta
+    property="og:description"
+    content="Licensed California Civil Engineer specializing in geotechnical engineering, project management, design, and construction. Founder of CivilEngineer.io."
+  />
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="CivilEngineer.io" />
+
+  <link rel="canonical" href="https://civilengineer.io/about" />
+</Helmet>
+
                 <div style={{ ...styles.generalContainer,  ...styles.alignCenter, ...styles.topMargin10, ...styles.generalFont, ...styles.bottomMargin15 }}>
                     <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>About</span>
                 </div>
