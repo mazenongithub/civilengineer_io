@@ -94,6 +94,7 @@ class ContactUs extends Component {
         const buttonWidth = { width: '55px' }
         const areaHeight = { minHeight: '200px' }
         const submitWidth = { width: '100%', maxWidth: '225px' }
+        const getFlex = this.state.width>900 ? styles.flex5 : styles.flex2
         return (
             <div style={{ ...styles.generalContainer, ...styles.padding15 }}>
 
@@ -243,7 +244,7 @@ class ContactUs extends Component {
                 </div>
 
                 <div style={{ ...styles.generalFlex }}>
-                    <div style={{ ...styles.flex5 }}>
+                    <div style={{ ...getFlex }}>
                         &nbsp;
                     </div>
                     <div style={{ ...styles.flex1 }}>

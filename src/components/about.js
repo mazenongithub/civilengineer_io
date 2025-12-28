@@ -34,7 +34,7 @@ class About extends Component {
 
         return(<div style={{ ...styles.generalContainer }}>
 
-            import { Helmet } from "react-helmet";
+          
 
 <Helmet>
   <title>

@@ -35,6 +35,8 @@ class HowItWorks extends Component {
             ? styles.flex16
             : styles.flex12;
 
+        const getImageWidth = this.state.widht > 900 ? styles.width50 : styles.width99
+
         return (<div style={{ ...styles.generalContainer, ...styles.padding15 }}>
 
             <div style={{ ...styles.generalContainer, ...styles.alignCenter, ...styles.generalFont, ...styles.bottomMargin15 }}>
@@ -99,7 +101,7 @@ class HowItWorks extends Component {
                 </ul>
             </div>
 
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.width50, ...styles.marginAuto }}>
+            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...getImageWidth, ...styles.marginAuto }}>
                 {Geotech()}
             </div>
 
@@ -170,7 +172,7 @@ class HowItWorks extends Component {
                     This gives the project manager full visibility and control, with all project information centralized and auditable.</span>
             </div>
 
-              <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.width80, ...styles.marginAuto }}>
+              <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...getImageWidth, ...styles.marginAuto }}>
                 {PM()}
             </div>
 
