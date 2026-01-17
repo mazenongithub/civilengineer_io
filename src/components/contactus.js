@@ -7,17 +7,44 @@ import { SaveContactUs } from './actions/api';
 class ContactUs extends Component {
     constructor(props) {
         super(props);
-        this.state = { render: '', width: 0, height: 0, open: false, fullname: '', company: '', emailaddress: '', phonenumber: '', geotechnical: false, projectmanagement: false, design: false, construction: false, customapp: false, detail: '', message: '' }
+        this.state = { render: '', width: 0, height: 0, open: false, fullname: 'mazen', company: 'civilengineer.io', emailaddress: 'mazen@civilengineer.io', phonenumber: '916-823-1652', geotechnical: true, projectmanagement: true, design: true, construction: true, customapp: true, detail: 'help', message: '', captchaToken: null }
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     }
     componentDidMount() {
         window.addEventListener('resize', this.updateWindowDimensions);
         this.updateWindowDimensions();
 
+        window.onTurnstileSuccess = (token) => {
+            this.setState({ captchaToken: token });
+        };
+
+        window.onTurnstileExpired = () => {
+            this.setState({ captchaToken: null });
+        };
+
+        if (window.turnstile) {
+            window.turnstile.render("#turnstile-container", {
+                sitekey: process.env.REACT_APP_TURNSTILE_SITE_KEY,
+                callback: (token) => {
+                    this.setState({ captchaToken: token });
+                },
+                "expired-callback": () => {
+                    this.setState({ captchaToken: null });
+                },
+                theme: "light"
+            });
+        }
     }
+
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateWindowDimensions);
+        if (window.turnstile) {
+            window.turnstile.remove("#turnstile-container");
+        }
+
+        delete window.onTurnstileSuccess;
+        delete window.onTurnstileExpired;
     }
 
     updateWindowDimensions() {
@@ -56,8 +83,12 @@ class ContactUs extends Component {
                 design,
                 construction,
                 customapp,
-                detail
+                detail,
+                captchaToken
+                
             } = this.state;
+
+   
 
             const values = {
                 fullname,
@@ -69,19 +100,20 @@ class ContactUs extends Component {
                 design,
                 construction,
                 customapp,
-                detail
+                detail,
+                captchaToken
             };
 
             const response = await SaveContactUs(values);
             const created = new Date(response.contactus.created).toLocaleTimeString();
-            const message =`${response.message} ${created}`
+            const message = `${response.message} ${created}`
             this.setState({
                 message: message || 'Message sent successfully'
             });
 
         } catch (err) {
             console.error('save contact us error:', err);
-            alert('Unable to send message. Please try again.');
+            alert(`Unable to send message. ${err}`);
         }
     }
 
@@ -94,7 +126,7 @@ class ContactUs extends Component {
         const buttonWidth = { width: '55px' }
         const areaHeight = { minHeight: '200px' }
         const submitWidth = { width: '100%', maxWidth: '225px' }
-        const getFlex = this.state.width>900 ? styles.flex5 : styles.flex2
+        const getFlex = this.state.width > 900 ? styles.flex5 : styles.flex2
         return (
             <div style={{ ...styles.generalContainer, ...styles.padding15 }}>
 
@@ -138,7 +170,7 @@ class ContactUs extends Component {
                         style={{ ...regularFont, ...styles.generalField }} />
                 </div>
 
-                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
+                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
                     <span style={{ ...regularFont }}>Company</span>
                 </div>
 
@@ -149,7 +181,7 @@ class ContactUs extends Component {
                         onChange={event => { this.setField("company", event.target.value) }} />
                 </div>
 
-                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
+                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
                     <span style={{ ...regularFont }}>Email Address</span>
                 </div>
 
@@ -159,7 +191,7 @@ class ContactUs extends Component {
                         onChange={event => { this.setField("emailaddress", event.target.value) }} />
                 </div>
 
-              <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
+                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
                     <span style={{ ...regularFont }}>Phone Number</span>
                 </div>
 
@@ -170,7 +202,7 @@ class ContactUs extends Component {
                         onChange={event => { this.setField("phonenumber", event.target.value) }} />
                 </div>
 
-                
+
 
                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
                     <span style={{ ...regularFont }}>Service of Interest</span>
@@ -243,19 +275,32 @@ class ContactUs extends Component {
                     <span style={{ ...regularFont }}>Message</span>
                 </div>
 
+                <div
+                    id="turnstile-container"
+                    style={{ marginBottom: "15px", textAlign: "center" }}
+                ></div>
+
+
                 <div style={{ ...styles.generalFlex }}>
                     <div style={{ ...getFlex }}>
                         &nbsp;
                     </div>
                     <div style={{ ...styles.flex1 }}>
-                        <button style={{ ...styles.generalButton, ...submitWidth }} onClick={() => { this.saveContactUs() }}>
+                        <button
+                            style={{
+                                ...styles.generalButton, ...submitWidth, opacity: this.state.captchaToken ? 1 : 0.5,
+                                cursor: this.state.captchaToken ? "pointer" : "not-allowed"
+                            }}
+                            disabled={!this.state.captchaToken}
+
+                            onClick={() => { this.saveContactUs() }}>
                             {submitButton()}
                         </button>
                     </div>
                 </div>
 
 
-                 <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.alignCenter }}>
+                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.alignCenter }}>
                     <span style={{ ...regularFont }}>{this.state.message}</span>
                 </div>
 
