@@ -13,8 +13,9 @@ export async function SaveContactUs(values) {
 
         if (!response.ok) {
             const data = await response.json().catch(() => ({}));
+            console.log(data)
             const message =
-                data.message || 'Request failed or server is not responding';
+                data.error || 'Request failed or server is not responding';
             throw new Error(message);
         }
 
