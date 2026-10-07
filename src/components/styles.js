@@ -100,6 +100,9 @@ export function MyStylesheet() {
           width50: {
             width: '50%'
         },
+           width33: {
+            width: '33%'
+        },
          width90: {
             width: '80%'
         },

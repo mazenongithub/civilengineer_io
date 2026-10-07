@@ -34,8 +34,8 @@ class Header extends Component {
                         {/* On mobile this appears LEFT of hamburger */}
                         <div className="logo-container">
                             {Logo()}
+                            
                         </div>
-
 
                         <DesktopNav />
 

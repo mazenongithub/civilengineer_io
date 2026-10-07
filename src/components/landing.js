@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { MyStylesheet } from './styles';
 import CivilEngineer from './civilengineer';
-import { linkArrow } from './svg';
+import { headerIconBanner, linkArrow } from './svg';
 import { Link } from 'react-router-dom';
 
 class Landing extends Component {
@@ -38,6 +38,7 @@ class Landing extends Component {
                 <div style={{ ...styles.generalContainer,  ...styles.alignCenter, ...styles.topMargin10, ...styles.generalFont, ...styles.bottomMargin15, ...styles.marginLeft15 }}>
                     <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>Geotechnical & Civil Engineering Reports Delivered Online</span>
                 </div>
+
                 <div style={{ ...styles.generalContainer, ...styles.generalFont,  ...styles.padding15 }}>
                     <span style={{ ...regularFont }}>Our mission is to empower engineers, contractors, agencies, and project managers to plan, design, and deliver successful projects using modern tools, automated workflows, and professional engineering services.</span>
                 </div>

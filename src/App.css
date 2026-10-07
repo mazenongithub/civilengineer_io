@@ -10,6 +10,42 @@ body {
   fill: #4b4b4b;
 }
 
+  .headericon-1 {
+        stroke-width: 5px;
+      }
+
+      .headericon-1, .headericon-2, .headericon-3, .headericon-4, .headericon-5 {
+        stroke-miterlimit: 10;
+      }
+
+      .headericon-1, .headericon-2, .headericon-3, .headericon-5 {
+        fill: none;
+      }
+
+      .headericon-1, .headericon-3, .headericon-5 {
+        stroke: #235075;
+      }
+
+      .headericon-6 {
+        fill: #235075;
+      }
+
+      .headericon-2, .headericon-4 {
+        stroke: #231f20;
+      }
+
+      .headericon-3 {
+        stroke-width: 11px;
+      }
+
+      .headericon-4 {
+        fill: #244f74;
+      }
+
+      .headericon-5 {
+        stroke-width: 8px;
+      }
+
 /* ————————————————————
    Header Wrapper
 ———————————————————— */
