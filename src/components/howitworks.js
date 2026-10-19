@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { MyStylesheet } from './styles';
 import CivilEngineer from './civilengineer';
-import { Geotech, PM } from './svg';
+import { Geotech, headerIconBanner, PM } from './svg';
 
 
 class HowItWorks extends Component {
@@ -43,6 +43,7 @@ class HowItWorks extends Component {
                 <span style={{ ...headerFont, ...styles.boldFont, ...styles.themeColor }}>How It Works</span>
             </div>
 
+          
             <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.themeColor }}>
                 <span style={{ ...headerFont }}>Geotechnical Engineering</span>
             </div>
