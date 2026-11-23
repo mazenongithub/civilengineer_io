@@ -1,97 +1,52 @@
-/* ————————————————————
-   Base / Reset 
-———————————————————— */
+/* Base / Reset */
 body {
   margin: 0;
-
 }
 
-.linkArrow-1 {
-  fill: #4b4b4b;
-}
+/* Existing SVG classes */
+.linkArrow-1 { fill: #4b4b4b; }
+.headericon-1 { stroke-width: 5px; }
+.headericon-1, .headericon-2, .headericon-3, .headericon-4, .headericon-5 { stroke-miterlimit: 10; }
+.headericon-1, .headericon-2, .headericon-3, .headericon-5 { fill: none; }
+.headericon-1, .headericon-3, .headericon-5 { stroke: #235075; }
+.headericon-6 { fill: #235075; }
+.headericon-2, .headericon-4 { stroke: #231f20; }
+.headericon-3 { stroke-width: 11px; }
+.headericon-4 { fill: #244f74; }
+.headericon-5 { stroke-width: 8px; }
 
-  .headericon-1 {
-        stroke-width: 5px;
-      }
-
-      .headericon-1, .headericon-2, .headericon-3, .headericon-4, .headericon-5 {
-        stroke-miterlimit: 10;
-      }
-
-      .headericon-1, .headericon-2, .headericon-3, .headericon-5 {
-        fill: none;
-      }
-
-      .headericon-1, .headericon-3, .headericon-5 {
-        stroke: #235075;
-      }
-
-      .headericon-6 {
-        fill: #235075;
-      }
-
-      .headericon-2, .headericon-4 {
-        stroke: #231f20;
-      }
-
-      .headericon-3 {
-        stroke-width: 11px;
-      }
-
-      .headericon-4 {
-        fill: #244f74;
-      }
-
-      .headericon-5 {
-        stroke-width: 8px;
-      }
-
-/* ————————————————————
-   Header Wrapper
-———————————————————— */
+/* Header */
 .header {
   background: #f2f2f3;
   border-bottom: 1px solid #d8dde3;
   font-family: Inter, sans-serif;
 }
 
-/* Top bar layout (mobile and desktop) */
 .header-inner {
   max-width: 1280px;
   margin: 0 auto;
   padding: 16px 24px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* ————————————————————
-   Logo
-———————————————————— */
-
-/* Desktop "big logo below nav" */
+/* Logos */
 .logo-large-screen {
   display: none;
   text-align: center;
   margin: 24px 0;
 }
-
 .logo-large-screen svg {
   width: 40%;
-  /* 40% on desktop */
   max-width: 500px;
 }
-
-/* Mobile small logo next to hamburger */
 .logo-container svg {
   width: 95%;
   max-width: 320px;
 }
 
-/* ————————————————————
-   Mobile Toggle Button
-———————————————————— */
+/* Mobile navigation toggle */
 .menu-toggle {
   display: block;
   font-size: 26px;
@@ -100,32 +55,15 @@ body {
   color: #244f74;
   cursor: pointer;
 }
+.desktop-nav { display: none; }
 
-/* ————————————————————
-   Desktop Navigation
-———————————————————— */
-.desktop-nav {
-  display: none;
-  /* Hidden on mobile */
-}
-
-.largeLogo-1 {
-  fill: none;
-}
-
-.largeLogo-1,
-.largeLogo-2 {
+.largeLogo-1 { fill: none; }
+.largeLogo-1, .largeLogo-2 {
   stroke: #231f20;
   stroke-miterlimit: 10;
 }
-
-.largeLogo-2 {
-  fill: #244f74;
-}
-
-.dropdown-1 {
-  fill: #235075;
-}
+.largeLogo-2 { fill: #244f74; }
+.dropdown-1 { fill: #235075; }
 
 @media (min-width: 900px) {
   .desktop-nav {
@@ -133,20 +71,14 @@ body {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-
     justify-content: space-between;
     align-items: center;
   }
-
-  /* 6 equal columns */
-  .desktop-nav>* {
+  .desktop-nav > * {
     flex: 1;
     text-align: center;
     position: relative;
-    /* needed for dropdown */
   }
-
-  /* Desktop links */
   .desktop-nav a,
   .desktop-nav span {
     font-size: 16px;
@@ -154,8 +86,6 @@ body {
     color: #244f74;
     text-decoration: none;
   }
-
-  /* CTA button but still evenly spaced */
   .desktop-nav .cta {
     background: #244f74;
     color: white;
@@ -163,17 +93,11 @@ body {
     border-radius: 4px;
     display: inline-block;
   }
-
-  .dropdown {
-    position: relative;
-  }
-
-  /* Dropdown menu */
+  .dropdown { position: relative; }
   .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
-    /* ALWAYS touches the dropdown parent */
     left: 50%;
     transform: translateX(-50%);
     background: #fff;
@@ -183,43 +107,21 @@ body {
     padding: 8px 0;
     z-index: 20;
   }
-
-  /* Show dropdown on hover (desktop only) */
   .dropdown:hover .dropdown-menu,
-  .dropdown-menu:hover {
-    display: block;
-  }
-
+  .dropdown-menu:hover { display: block; }
   .dropdown-menu a {
     display: block;
     padding: 10px 16px;
     text-align: left;
     color: #244f74;
   }
-
-  .dropdown-menu a:hover {
-    background: #eef3f8;
-  }
-
-  /* MOBILE logo disappears */
-  .logo-container {
-    display: none;
-  }
-
-  /* DESKTOP logo under nav appears */
-  .logo-large-screen {
-    display: block;
-  }
-
-  /* Hide hamburger on desktop */
-  .menu-toggle {
-    display: none;
-  }
+  .dropdown-menu a:hover { background: #eef3f8; }
+  .logo-container { display: none; }
+  .logo-large-screen { display: block; }
+  .menu-toggle { display: none; }
 }
 
-/* ————————————————————
-   Mobile Navigation Slide-Out
-———————————————————— */
+/* Mobile navigation drawer */
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -227,20 +129,13 @@ body {
   height: 100%;
   width: 80vw;
   max-width: 360px;
-
   background: #f2f2f3;
   transform: translateX(100%);
   transition: transform 0.25s ease;
-
   padding: 24px;
   z-index: 1000;
 }
-
-.mobile-nav.open {
-  transform: translateX(0);
-}
-
-/* mobile nav links */
+.mobile-nav.open { transform: translateX(0); }
 .mobile-nav nav a,
 .accordion-toggle {
   display: block;
@@ -251,13 +146,10 @@ body {
   border: none;
   text-align: left;
 }
-
 .accordion-content a {
   padding-left: 16px;
   font-size: 15px;
 }
-
-/* mobile CTA */
 .mobile-cta {
   margin-top: 24px;
   background: #244f74;
@@ -265,10 +157,6 @@ body {
   padding: 12px;
   text-align: center;
 }
-
-/* ————————————————————
-   Overlay Behind Mobile Menu
-———————————————————— */
 .overlay {
   position: fixed;
   inset: 0;
@@ -276,178 +164,140 @@ body {
   z-index: 999;
 }
 
-       .geotech-1 {
-        stroke-width: 2px;
-      }
+/* Existing Geotechnical SVG */
+.geotech-1 { stroke-width: 2px; }
+.geotech-1, .geotech-2, .geotech-3 {
+  stroke: #231f20;
+  stroke-miterlimit: 10;
+}
+.geotech-1, .geotech-3 { fill: none; }
+.geotech-4 { letter-spacing: -.05em; }
+.geotech-5 { letter-spacing: 0em; }
+.geotech-6 { font-size: 30px; }
+.geotech-6, .geotech-7 {
+  fill: #4b4b4b;
+  font-family: Inter, sans-serif;
+  font-variation-settings: 'opsz' 14, 'wght' 400;
+}
+.geotech-2 { fill: #231f20; stroke-width: .75px; }
+.geotech-8 { letter-spacing: -.02em; }
+.geotech-9 { letter-spacing: -.06em; }
+.geotech-10 { letter-spacing: 0em; }
+.geotech-11 { letter-spacing: .02em; }
+.geotech-12 { letter-spacing: -.01em; }
+.geotech-13 { letter-spacing: -.02em; }
+.geotech-7 { font-size: 20px; }
 
-      .geotech-1, .geotech-2, .geotech-3 {
-        stroke: #231f20;
-        stroke-miterlimit: 10;
-      }
+/* Existing Project Management SVG */
+.pm-1 { stroke-width: 2px; }
+.pm-1, .pm-2, .pm-3 {
+  stroke: #231f20;
+  stroke-miterlimit: 10;
+}
+.pm-1, .pm-3 { fill: none; }
+.pm-4 { letter-spacing: 8.08em; }
+.pm-5 { letter-spacing: -.05em; }
+.pm-6 { letter-spacing: 0em; }
+.pm-7 { letter-spacing: 0em; }
+.pm-8 { font-size: 30px; }
+.pm-8, .pm-9 {
+  fill: #4b4b4b;
+  font-family: Inter, sans-serif;
+  font-variation-settings: 'opsz' 14, 'wght' 400;
+}
+.pm-2 { fill: #231f20; stroke-width: .75px; }
+.pm-10 { letter-spacing: -.02em; }
+.pm-11 { letter-spacing: -.08em; }
+.pm-12 { letter-spacing: -.06em; }
+.pm-13 { letter-spacing: 0em; }
+.pm-14 { letter-spacing: 0em; }
+.pm-15 { letter-spacing: .02em; }
+.pm-16 { letter-spacing: -.01em; }
+.pm-17 { letter-spacing: -.03em; }
+.pm-18 { letter-spacing: -.02em; }
+.pm-9 { font-size: 20px; }
 
-      .geotech-1, .geotech-3 {
-        fill: none;
-      }
+/* Additional existing SVG classes */
+.checkbox-1 { fill: none; }
+.checkbox-1, .checkbox-2 {
+  stroke: #231f20;
+  stroke-miterlimit: 10;
+}
+.checkbox-2 { fill: #244f74; }
+.submit-1 {
+  fill: #f2f2f3;
+  font-family: Inter, sans-serif;
+  font-size: 25.12px;
+  font-variation-settings: 'opsz' 14, 'wght' 800;
+  font-weight: 700;
+}
+.submit-2 {
+  fill: #244f74;
+  stroke: #231f20;
+  stroke-miterlimit: 10;
+}
 
-      .geotech-4 {
-        letter-spacing: -.05em;
-      }
-
-      .geotech-5 {
-        letter-spacing: 0em;
-      }
-
-      .geotech-6 {
-        font-size: 30px;
-      }
-
-      .geotech-6, .geotech-7 {
-        fill: #4b4b4b;
-        font-family: Inter, sans-serif;
-        font-variation-settings: 'opsz' 14, 'wght' 400;
-      }
-
-      .geotech-2 {
-        fill: #231f20;
-        stroke-width: .75px;
-      }
-
-      .geotech-8 {
-        letter-spacing: -.02em;
-      }
-
-      .geotech-9 {
-        letter-spacing: -.06em;
-      }
-
-      .geotech-10 {
-        letter-spacing: 0em;
-      }
-
-      .geotech-11 {
-        letter-spacing: .02em;
-      }
-
-      .geotech-12 {
-        letter-spacing: -.01em;
-      }
-
-      .geotech-13 {
-        letter-spacing: -.02em;
-      }
-
-      .geotech-7 {
-        font-size: 20px;
-      }
-
-
-          .pm-1 {
-        stroke-width: 2px;
-      }
-
-      .pm-1, .pm-2, .pm-3 {
-        stroke: #231f20;
-        stroke-miterlimit: 10;
-      }
-
-      .pm-1, .pm-3 {
-        fill: none;
-      }
-
-      .pm-4 {
-        letter-spacing: 8.08em;
-      }
-
-      .pm-5 {
-        letter-spacing: -.05em;
-      }
-
-      .pm-6 {
-        letter-spacing: 0em;
-      }
-
-      .pm-7 {
-        letter-spacing: 0em;
-      }
-
-      .pm-8 {
-        font-size: 30px;
-      }
-
-      .pm-8, .pm-9 {
-        fill: #4b4b4b;
-        font-family: Inter, sans-serif;
-        font-variation-settings: 'opsz' 14, 'wght' 400;
-      }
-
-      .pm-2 {
-        fill: #231f20;
-        stroke-width: .75px;
-      }
-
-      .pm-10 {
-        letter-spacing: -.02em;
-      }
-
-      .pm-11 {
-        letter-spacing: -.08em;
-      }
-
-      .pm-12 {
-        letter-spacing: -.06em;
-      }
-
-      .pm-13 {
-        letter-spacing: 0em;
-      }
-
-      .pm-14 {
-        letter-spacing: 0em;
-      }
-
-      .pm-15 {
-        letter-spacing: .02em;
-      }
-
-      .pm-16 {
-        letter-spacing: -.01em;
-      }
-
-      .pm-17 {
-        letter-spacing: -.03em;
-      }
-
-      .pm-18 {
-        letter-spacing: -.02em;
-      }
-
-      .pm-9 {
-        font-size: 20px;
-      }
-
-            .checkbox-1 {
-        fill: none;
-      }
-
-      .checkbox-1, .checkbox-2 {
-        stroke: #231f20;
-        stroke-miterlimit: 10;
-      }
-
-      .checkbox-2 {
-        fill: #244f74;
-      }
-
-         .submit-1 {
-        fill: #f2f2f3;
-        font-family:  Inter, sans-serif;
-        font-size: 25.12px;
-        font-variation-settings: 'opsz' 14, 'wght' 800;
-        font-weight: 700;
-      }
-
-      .submit-2 {
-        fill: #244f74;
-        stroke: #231f20;
-        stroke-miterlimit: 10;
-      }
+/* Landing page styles follow below */
+.ce-landing{--navy:#10243d;--teal:#078f9b;--muted:#607086;--border:#e4eaf0;--surface:#f5f8fb;color:var(--navy);background:#fff;width:100%;overflow:hidden;line-height:1.65}
+.ce-landing *{box-sizing:border-box}
+.ce-container{width:min(1180px,92%);margin:0 auto}
+.ce-section{padding:90px 0}
+.ce-eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;margin-bottom:18px}
+.ce-eyebrow:before{content:'';width:25px;height:2px;background:currentColor}
+.ce-section-heading{max-width:780px;margin-bottom:44px}
+.ce-section-heading.center{text-align:center;margin-left:auto;margin-right:auto}
+.ce-section-heading h2{font-size:clamp(30px,3.6vw,46px);font-weight:800;line-height:1.17;letter-spacing:-1.3px;margin:0 0 18px}
+.ce-section-heading p{color:var(--muted);font-size:17px;line-height:1.8;margin:0}
+.ce-button{display:inline-flex;justify-content:center;align-items:center;gap:12px;text-decoration:none;padding:15px 24px;font-size:14px;font-weight:750;border-radius:8px;transition:transform .2s,background .2s;cursor:pointer}
+.ce-button:hover{transform:translateY(-2px)}
+.ce-button.primary{color:#fff;background:var(--teal);box-shadow:0 8px 24px #0002}
+.ce-button.primary:hover{background:#067a85}
+.ce-button.secondary{border:1px solid #ffffff55;color:#fff;background:#ffffff0f}
+.ce-button.light{background:#fff;color:var(--navy)}
+.ce-hero{position:relative;color:#fff;background:radial-gradient(ellipse at 90% 20%,#078f9b35,transparent 45%),linear-gradient(125deg,#091729,#132b48 65%,#183a52);padding:105px 0 95px}
+.ce-hero:after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.11;background-image:linear-gradient(#ffffff55 1px,transparent 1px),linear-gradient(90deg,#ffffff55 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(90deg,transparent,#000)}
+.ce-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:center;position:relative;z-index:1}
+.ce-hero .ce-eyebrow{color:#63d5d4}
+.ce-hero h1{font-size:clamp(40px,5vw,68px);font-weight:850;line-height:1.08;letter-spacing:-2px;margin:0 0 28px}
+.ce-hero h1 span{color:#63d5d4}
+.ce-hero-description{color:#c2d0df;font-size:18px;line-height:1.85;max-width:610px;margin:0 0 32px}
+.ce-hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.ce-hero-note{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px;color:#acbfd0;font-size:12px}
+.ce-hero-note span:before{content:'✓';color:#63d5d4;margin-right:7px;font-weight:bold}
+.ce-drawing{background:#091c2feb;border:1px solid #63d5d455;border-radius:12px;overflow:hidden;box-shadow:0 24px 55px #0004}
+.ce-drawing svg{display:block;width:100%;height:auto}
+.ce-drawing-bar{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;color:#9dc8d5;font-size:9px;letter-spacing:1px;font-weight:800;border-bottom:1px solid #63d5d433}
+.ce-drawing-bottom{border-top:1px solid #63d5d433;border-bottom:0;color:#7193a5}
+.ce-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.ce-service-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:12px;padding:28px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.ce-service-card:hover{transform:translateY(-5px);border-color:#a9d9dd;box-shadow:0 20px 45px #10243d17}
+.ce-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.ce-card-icon{width:53px;height:53px;background:#e7f7f7;color:var(--teal);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:29px}
+.ce-card-number{font-size:12px;color:#a2afbb;font-weight:800;letter-spacing:1px}
+.ce-service-card h3{font-size:20px;line-height:1.35;margin:0 0 15px;font-weight:800}
+.ce-service-card p{color:var(--muted);font-size:14px;line-height:1.8;margin:0 0 22px;flex:1}
+.ce-tags{display:flex;flex-wrap:wrap;gap:7px}
+.ce-tag{font-size:10px;font-weight:700;color:#537285;padding:5px 9px;border-radius:4px;background:#eef3f6}
+.ce-capabilities{background:var(--surface)}
+.ce-capability-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ce-capability{background:#fff;border:1px solid #e6ecf1;border-radius:10px;padding:25px}
+.ce-capability-icon{color:var(--teal);font-size:27px;margin-bottom:15px}
+.ce-capability h3{font-size:17px;margin:0 0 10px}
+.ce-capability p{color:var(--muted);font-size:13px;line-height:1.8;margin:0}
+.ce-about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.ce-about-panel{background:var(--navy);color:#fff;padding:40px;border-radius:15px}
+.ce-about-panel h3{font-size:27px;line-height:1.3;margin:12px 0 20px}
+.ce-about-panel p{color:#c0d0df;font-size:15px;line-height:1.9}
+.ce-about-panel-label{color:#63d5d4;font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:800}
+.ce-advantages{display:grid;gap:22px}
+.ce-advantage{display:flex;gap:17px}
+.ce-check{width:32px;height:32px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#e7f7f7;color:var(--teal);font-weight:900}
+.ce-advantage h4{margin:0 0 5px;font-size:16px}
+.ce-advantage p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+.ce-cta{background:linear-gradient(120deg,#0e263f,#086b79);color:#fff;padding:80px 0;text-align:center}
+.ce-cta h2{font-size:clamp(30px,4vw,46px);line-height:1.2;letter-spacing:-1px;margin:0 0 18px}
+.ce-cta p{font-size:17px;color:#d1e5e9;max-width:650px;margin:0 auto 30px}
+.ce-footer-note{padding:28px 0;background:#081523;color:#90a5b9;text-align:center;font-size:12px}
+@media(max-width:900px){.ce-hero-grid,.ce-about-grid{grid-template-columns:1fr}.ce-drawing{max-width:580px;margin:0 auto}.ce-service-grid,.ce-capability-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ce-about-grid{gap:35px}}
+@media(max-width:600px){.ce-hero{padding:65px 0 70px}.ce-hero h1{font-size:39px;letter-spacing:-1.3px}.ce-hero-description{font-size:15px}.ce-section{padding:65px 0}.ce-service-grid,.ce-capability-grid{grid-template-columns:1fr}.ce-service-card{padding:24px}.ce-hero-actions{flex-direction:column}.ce-hero-actions .ce-button{width:100%}.ce-about-panel{padding:28px}.ce-drawing-bar{font-size:7px;padding:10px;letter-spacing:.3px}}
+@media(prefers-reduced-motion:reduce){.ce-button,.ce-service-card{transition:none}}

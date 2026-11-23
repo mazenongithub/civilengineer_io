@@ -1,0 +1,60 @@
+.ce-custom {
+    box-sizing: border-box;
+    max-width: 1120px;
+    margin-inline: auto;
+    padding: clamp(28px, 5vw, 64px) clamp(18px, 4vw, 48px);
+    color: #263e50;
+    line-height: 1.65;
+}
+
+.ce-custom h1, .ce-custom h2, .ce-custom h3 {
+    margin: 0;
+    color: #163b58;
+    line-height: 1.2;
+}
+
+.ce-custom p { margin: 0.75em 0 0; }
+.ce-custom__intro { max-width: 68ch; }
+.ce-custom section { margin-top: clamp(32px, 5vw, 56px); }
+.ce-custom h2 { font-size: clamp(1.35rem, 2.4vw, 1.8rem); }
+.ce-custom h3 { font-size: 1.12em; }
+
+.ce-custom__examples {
+    display: grid;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.ce-custom__examples article {
+    border-top: 3px solid #235075;
+    padding-top: 16px;
+}
+
+.ce-custom__contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 32px;
+    padding: clamp(20px, 3vw, 32px);
+    background: #edf4f7;
+    border-radius: 10px;
+}
+
+.ce-custom__contact > div { flex: 1 1 34rem; }
+
+.ce-custom .ce-custom__contact a {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 6px;
+    background: #235075;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ce-custom .ce-custom__contact a:hover { background: #183b58; }
+.ce-custom__contact a:focus-visible { outline: 3px solid #08776c; outline-offset: 3px; }
+
+@media (min-width: 900px) {
+    .ce-custom__examples { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

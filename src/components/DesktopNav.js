@@ -7,22 +7,27 @@ class DesktopNav extends Component {
   render() {
     const buttonWidth = {width:'26px'}
     const styles = MyStylesheet();
+    const navLinkStyle = {
+    color: '#244f74',
+    textDecoration: 'none'
+};
     return (
       <nav className="desktop-nav">
         <div className="nav-item dropdown">
           <span>Solutions <button style={{...buttonWidth, ...styles.generalButton, ...styles.navButton}}>{dropDown()}</button> </span>
           <div className="dropdown-menu">
-            <a href="#">Geotechnical</a>
+            <a href="https://gfk.civilengineer.io" target="_blank">Geotechnical (engineering)</a>
+            <a href="https://geotech.civilengineer.io" target="_blank">Geotechnical (clients)</a>
             <a href="#">Engineering Design</a>
             <a href="#">Project Management</a>
             <a href="#">Construction Management</a>
           </div>
         </div>
 
-        <a href="#">Custom Apps</a>
-        <Link to={'/howitworks'}  style={{...styles.generalLink}}>How It Works</Link>
-        <Link to={'/'}  style={{...styles.generalLink}}>Home</Link>
-        <Link to={'/about'} style={{...styles.generalLink}}>About</Link>
+        <Link to={'/customapps'}  style={{...navLinkStyle}}>Custom Apps</Link>
+        <Link to={'/howitworks'}  style={{...navLinkStyle}}>How It Works</Link>
+        <Link to={'/'}  style={{...navLinkStyle}}>Home</Link>
+        <Link to={'/about'} style={{...navLinkStyle}}>About</Link>
         <Link to={'/contactus'}  className="cta">Contact Us</Link>
       </nav>
     );

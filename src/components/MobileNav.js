@@ -1,53 +1,115 @@
 import React, { Component } from "react";
-import { dropDown } from "./svg";
-import { MyStylesheet } from "./styles";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 class MobileNav extends Component {
   state = {
     solutionsOpen: false
   };
 
+  closeButton = React.createRef();
+  previousFocus = null;
+
+  componentDidMount() {
+    if (this.props.open) {
+      this.focusDrawer();
+    }
+  }
+
+  componentDidUpdate(previousProps) {
+    if (!previousProps.open && this.props.open) {
+      this.focusDrawer();
+    }
+
+    if (previousProps.open && !this.props.open) {
+      if (this.state.solutionsOpen) {
+        this.setState({ solutionsOpen: false });
+      }
+
+      if (this.previousFocus?.isConnected) {
+        this.previousFocus.focus();
+      }
+
+      this.previousFocus = null;
+    }
+  }
+
+  focusDrawer = () => {
+    this.previousFocus = document.activeElement;
+    this.closeButton.current?.focus();
+  };
+
   toggleSolutions = () => {
-    this.setState({ solutionsOpen: !this.state.solutionsOpen });
+    this.setState(({ solutionsOpen }) => ({
+      solutionsOpen: !solutionsOpen
+    }));
+  };
+
+  handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      this.props.onClose();
+    }
   };
 
   render() {
     const { open, onClose } = this.props;
     const { solutionsOpen } = this.state;
-    const styles = MyStylesheet();
-    const buttonWidth = {width:'26px'}
-    return (
-         <>
-      {open && <div className="overlay" onClick={onClose} />}
 
-      <aside className={`mobile-nav ${open ? "open" : ""}`}>
-          <nav>
+    if (!open) {
+      return null;
+    }
+
+    return (
+      <div className="site-mobile-menu" onKeyDown={this.handleKeyDown}>
+        <div
+          className="site-mobile-backdrop"
+          aria-hidden="true"
+          onClick={onClose}
+        />
+
+        <aside className="site-mobile-drawer" id="mobile-navigation">
+          <button
+            ref={this.closeButton}
+            className="site-mobile-close"
+            type="button"
+            onClick={onClose}
+          >
+            Close <span aria-hidden="true">×</span>
+          </button>
+
+          <nav aria-label="Main navigation">
             <button
-              className="accordion-toggle"
-              onClick={this.toggleSolutions}
+              className="site-nav-toggle"
+              type="button"
               aria-expanded={solutionsOpen}
+              aria-controls="mobile-solutions"
+              onClick={this.toggleSolutions}
             >
-              Solutions <button style={{...buttonWidth, ...styles.generalButton, ...styles.navButton}}>{dropDown()}</button>
+              Solutions
+              <span className="site-nav-chevron" aria-hidden="true" />
             </button>
 
-            {solutionsOpen && (
-              <div className="accordion-content">
-                <a href="#">Geotechnical</a>
-                <a href="#">Engineering Design</a>
-                <a href="#">Project Management</a>
-                <a href="#">Construction Management</a>
-                <a href="#">Custom Apps</a>
-              </div>
-            )}
+            <div
+              id="mobile-solutions"
+              className="site-nav-accordion"
+              hidden={!solutionsOpen}
+            >
+              <a href="https://gfk.civilengineer.io" target="_blank" onClick={onClose}>Geotechnical (engineering)</a>
+              <a href="https://geotech.civilengineer.io" target="_blank" onClick={onClose}>Geotechnical (clients)</a>
+              <a href="#" onClick={onClose}>Engineering Design</a>
+              <a href="#" onClick={onClose}>Project Management</a>
+              <a href="#" onClick={onClose}>Construction Management</a>
+            </div>
 
-            
-            <Link onClick={onClose} to={'/howitworks'}  style={{...styles.generalLink}}>How It Works</Link>
-            <Link onClick={onClose} to={'/'}  style={{...styles.generalLink}}>Home</Link>
-            <Link onClick={onClose} to={'/about'} style={{...styles.generalLink}}>About</Link>
-            <Link onClick={onClose} to={'/contactus'} style={{...styles.generalLink}}>Contact Us</Link>
-            </nav>
-      </aside>
-    </>
+            <Link to="/customapps" onClick={onClose}>Custom Apps</Link>
+            <Link to="/howitworks" onClick={onClose}>How It Works</Link>
+            <Link to="/" onClick={onClose}>Home</Link>
+            <Link to="/about" onClick={onClose}>About</Link>
+            <Link to="/contactus" className="site-nav-cta" onClick={onClose}>
+              Contact Us
+            </Link>
+          </nav>
+        </aside>
+      </div>
     );
   }
 }

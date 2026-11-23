@@ -1,20 +1,25 @@
-import React, { Component } from 'react'
-import { MyStylesheet } from './styles';
+import React, { Component } from 'react';
 import CivilEngineer from './civilengineer';
-import { Geotech, headerIconBanner, PM } from './svg';
-
+import { MyStylesheet } from './styles';
+import { Geotech, PM } from './svg';
+import './HowItWorks.css';
 
 class HowItWorks extends Component {
-
     constructor(props) {
         super(props);
-        this.state = { render: '', width: 0, height: 0, open: false }
-        this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+
+        this.state = {
+            width: 0,
+            height: 0
+        };
+
+        this.updateWindowDimensions =
+            this.updateWindowDimensions.bind(this);
     }
+
     componentDidMount() {
         window.addEventListener('resize', this.updateWindowDimensions);
         this.updateWindowDimensions();
-
     }
 
     componentWillUnmount() {
@@ -22,167 +27,142 @@ class HowItWorks extends Component {
     }
 
     updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        this.setState({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
     }
 
     render() {
-        const styles = MyStylesheet()
+        const styles = MyStylesheet();
         const civilengineer = new CivilEngineer();
-        const headerFont = civilengineer.getHeaderFont.call(this)
-        const regularFont = civilengineer.getRegularFont.call(this)
+        const headerFont = civilengineer.getHeaderFont.call(this);
+        const regularFont = civilengineer.getRegularFont.call(this);
 
-        const flexBox = this.state.width > 900
-            ? styles.flex16
-            : styles.flex12;
+        return (
+            <main
+                className="ce-how"
+                style={{ ...styles.generalFont, ...regularFont }}
+                aria-labelledby="how-title"
+            >
+                <h1 id="how-title" style={headerFont}>How It Works</h1>
 
-        const getImageWidth = this.state.widht > 900 ? styles.width50 : styles.width99
+                <section className="ce-how__section" aria-labelledby="geotech-title">
+                    <h2 id="geotech-title">Geotechnical Engineering</h2>
 
-        return (<div style={{ ...styles.generalContainer, ...styles.padding15 }}>
+                    <div className="ce-how__layout">
+                        <ol className="ce-how__steps">
+                            <li>
+                                <h3>Create your account</h3>
+                                <p>
+                                    Register in the{' '}
+                                    <a href="https://geotech.civilengineer.io">
+                                        geotechnical client portal
+                                    </a>.
+                                </p>
+                            </li>
+                            <li>
+                                <h3>Submit your project</h3>
+                                <p>
+                                    Enter the site information, describe the work
+                                    you need, and upload supporting documents.
+                                </p>
+                            </li>
+                            <li>
+                                <h3>Investigation and analysis</h3>
+                                <p>
+                                    CivilEngineer.io performs the geotechnical
+                                    investigation, analyzes the findings, and
+                                    prepares your report.
+                                </p>
+                            </li>
+                            <li>
+                                <h3>Receive your report</h3>
+                                <p>
+                                    When your report is ready, open your project in the geotechnical
+                                    client portal to view or download it.
+                                </p>
+                            </li>
+                            <li>
+                                <h3>Access your project record</h3>
+                                <p>
+                                    Reports stay organized by project in your
+                                    account. Return whenever you need another copy.
+                                </p>
+                            </li>
+                        </ol>
 
-            <div style={{ ...styles.generalContainer, ...styles.alignCenter, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                <span style={{ ...headerFont, ...styles.boldFont, ...styles.themeColor }}>How It Works</span>
-            </div>
+                        <div
+                            className="ce-how__diagram"
+                            role="img"
+                            aria-label="Geotechnical project workflow from submission to report delivery"
+                        >
+                            {Geotech()}
+                        </div>
+                    </div>
+                </section>
 
-          
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.themeColor }}>
-                <span style={{ ...headerFont }}>Geotechnical Engineering</span>
-            </div>
+                <section className="ce-how__section" aria-labelledby="delivery-title">
+                    <h2 id="delivery-title">
+                        Project Management, Design &amp; Construction
+                    </h2>
 
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>Clients can manage their geotechnical work entirely online.</span>
-            </div>
+                    <p className="ce-how__intro">
+                        The project manager creates the project in civilengineer.io
+                        and assembles the delivery team through the Engineering
+                        (Design) Network and the Construction Network.
+                    </p>
 
-            <div style={{ ...styles.generalFlex, ...styles.bottomMargin15 }}>
-                <div style={{ ...styles.flex1 }}><span style={{ ...regularFont, ...styles.boldFont }}>1. Create An Account</span></div>
-            </div>
+                    <div className="ce-how__layout">
+                        <div className="ce-how__phases">
+                            <div>
+                                <h3>Design</h3>
+                                <p>
+                                    Engineers prepare the specifications, quantity
+                                    takeoffs, cost estimate, and bid schedule.
+                                    Together, these documents define the work,
+                                    establish a basis for pricing, and set the
+                                    construction requirements.
+                                </p>
+                            </div>
 
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>Users create an account at https://geotech.civilengineer.io</span>
-            </div>
+                            <div>
+                                <h3>Construction</h3>
+                                <p>
+                                    Contractors review the project specifications online and use CSI
+                                    classifications to organize work items. For each item, they build
+                                    a unit price from labor rates, equipment rates, and material prices.
+                                </p>
+                                <p>
+                                    Contractors enter the project schedule and record actual progress
+                                    and completed quantities. They use those quantities and the work
+                                    item unit prices to create construction invoices.
+                                </p>
+                            </div>
 
+                            <div>
+                                <h3>Project management oversight</h3>
+                                <p>
+                                    The platform tracks scope, schedule, quantities,
+                                    unit prices, reported progress, and payment
+                                    applications. The project manager can review
+                                    these together in one auditable project record.
+                                </p>
+                            </div>
+                        </div>
 
-            <div style={{ ...styles.generalFlex, ...styles.bottomMargin15 }}>
-                <div style={{ ...styles.flex1 }}><span style={{ ...regularFont, ...styles.boldFont }}>2. Submit A Project</span></div>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>Inside the platform, users can create and submit geotechnical projects, including site information, scope, and supporting documents.</span>
-            </div>
-
-            <div style={{ ...styles.generalFlex, ...styles.bottomMargin15 }}>
-                <div style={{ ...styles.flex1 }}><span style={{ ...regularFont, ...styles.boldFont }}>3. Engineering & Analysis</span></div>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>CivilEngineer.io performs the geotechnical engineering work directly, including investigation, analysis, and report preparation.</span>
-            </div>
-
-            <div style={{ ...styles.generalFlex, ...styles.bottomMargin15 }}>
-                <div style={{ ...styles.flex1 }}><span style={{ ...regularFont, ...styles.boldFont }}>4. Receive Your Report</span></div>
-
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>Completed geotechnical reports are delivered through https://gfk.civilengineer.io</span>
-            </div>
-
-            <div style={{ ...styles.generalFlex, ...styles.bottomMargin15 }}>
-                <div style={{ ...styles.flex1 }}><span style={{ ...regularFont, ...styles.boldFont }}>5. Permanent Access</span></div>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>All reports are stored in your account, organized by project, where you:</span>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <ul>
-                    <li style={{ ...regularFont }}>Always have access</li>
-                    <li style={{ ...regularFont }}>Can download reports at any time</li>
-                    <li style={{ ...regularFont }}>Maintain a permanent project record</li>
-                </ul>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...getImageWidth, ...styles.marginAuto }}>
-                {Geotech()}
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.themeColor }}>
-                <span style={{ ...headerFont }}>PM, Design, and Construction</span>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>All project delivery activities are managed inside the civilengineer.io PM system, creating a single source of truth from design through construction.</span>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>
-                    Projects are created and administered within the PM platform, where the project manager assembles the delivery team using the Engineering (Design) Network and the Construction Network.</span>
-            </div>
-
-            <div style={{ ...styles.generalFlex, ...styles.bottomMargin15 }}>
-                <div style={{ ...styles.flex1 }}><span style={{ ...regularFont, ...styles.boldFont }}>Design Phase</span></div>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>Engineers engaged through the platform deliver:</span>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <ul><li style={{ ...regularFont }}>Project specifications</li>
-                    <li style={{ ...regularFont }}>Cost Estimate, Bid Schedule, and Quantity Take-offs</li>
-                </ul>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>
-                    These documents establish scope, pricing structure, and construction requirements.</span>
-            </div>
-
-            <div style={{ ...styles.generalFlex, ...styles.bottomMargin15 }}>
-                <div style={{ ...styles.flex1 }}><span style={{ ...regularFont, ...styles.boldFont }}>Construction Phase</span></div>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>Construction companies manage execution directly in the system by:</span>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <ul><li style={{ ...regularFont }}>Entering the project schedule</li>
-                    <li style={{ ...regularFont }}>Reporting actual progress and quantities</li>
-                    <li style={{ ...regularFont }}>Submitting schedule-based payment applications</li>
-                </ul>
-            </div>
-
-            <div style={{ ...styles.generalFlex, ...styles.bottomMargin15 }}>
-                <div style={{ ...styles.flex1 }}><span style={{ ...regularFont, ...styles.boldFont }}>Project Management  Oversight</span></div>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>The platform automatically tracks:</span>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <ul><li style={{ ...regularFont }}>Scope, schedule, quantities, and unit pricing</li>
-                    <li style={{ ...regularFont }}>Progress </li>
-                    <li style={{ ...regularFont }}>Submitted payment</li>
-                </ul>
-            </div>
-
-            <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                <span style={{ ...regularFont }}>
-                    This gives the project manager full visibility and control, with all project information centralized and auditable.</span>
-            </div>
-
-              <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...getImageWidth, ...styles.marginAuto }}>
-                {PM()}
-            </div>
-
-
-
-        </div>)
+                        <div
+                            className="ce-how__diagram"
+                            role="img"
+                            aria-label="Project delivery workflow for design, construction, and management oversight"
+                        >
+                            {PM()}
+                        </div>
+                    </div>
+                </section>
+            </main>
+        );
     }
-
-
 }
 
 export default HowItWorks;

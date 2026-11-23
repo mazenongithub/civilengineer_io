@@ -1,0 +1,109 @@
+.ce-how {
+    box-sizing: border-box;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 64px) clamp(18px, 4vw, 48px);
+    color: #263e50;
+    line-height: 1.65;
+}
+
+.ce-how h1,
+.ce-how h2,
+.ce-how h3 {
+    color: #163b58;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.ce-how h1 {
+    margin: 0 0 0.85em;
+    letter-spacing: -0.025em;
+}
+
+.ce-how__section {
+    padding-block: clamp(24px, 4vw, 44px);
+    border-top: 1px solid #d6e2ea;
+}
+
+.ce-how h2 {
+    margin: 0 0 0.9em;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.ce-how h3 {
+    margin: 0 0 0.35em;
+    font-size: 1.08em;
+}
+
+.ce-how p {
+    margin: 0;
+}
+
+.ce-how .ce-how__intro {
+    max-width: 74ch;
+    margin-bottom: 1.5em;
+}
+
+.ce-how__layout {
+    display: grid;
+    align-items: start;
+    gap: 28px;
+}
+
+.ce-how__steps {
+    margin: 0;
+    padding-inline-start: 1.8em;
+}
+
+.ce-how__steps li {
+    padding-inline-start: 0.4em;
+}
+
+.ce-how__steps li + li {
+    margin-top: 1.15em;
+}
+
+.ce-how__steps li::marker {
+    color: #235075;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.ce-how__phases {
+    display: grid;
+    gap: 1.25em;
+}
+
+.ce-how__phases > div {
+    padding-inline-start: 1em;
+    border-inline-start: 3px solid #b9cedc;
+}
+
+.ce-how a {
+    color: #235075;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.ce-how a:focus-visible {
+    outline: 2px solid #235075;
+    outline-offset: 3px;
+}
+
+.ce-how__diagram {
+    min-width: 0;
+}
+
+.ce-how__diagram svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 900px) {
+    .ce-how__layout {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        column-gap: clamp(32px, 5vw, 64px);
+    }
+}

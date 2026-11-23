@@ -1,0 +1,58 @@
+.ce-contact {
+    box-sizing: border-box;
+    max-width: 1120px;
+    margin: auto;
+    padding: clamp(24px, 5vw, 64px) clamp(16px, 4vw, 48px);
+    display: grid;
+    gap: clamp(28px, 5vw, 64px);
+    color: #183950;
+    line-height: 1.55;
+}
+.ce-contact h1 { margin: 0; line-height: 1.15; }
+.ce-contact header p { max-width: 34ch; }
+.ce-contact a { color: #235075; text-underline-offset: 3px; }
+.ce-contact form { display: grid; gap: 20px; min-width: 0; }
+.ce-contact fieldset { min-width: 0; border: 0; margin: 0; padding: 0; }
+.ce-contact legend { padding: 0 0 10px; font-weight: 700; }
+.ce-contact__grid, .ce-contact__services { display: grid; gap: 12px; }
+.ce-contact label { display: grid; gap: 5px; }
+.ce-contact input:not([type="checkbox"]), .ce-contact textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #8398a6;
+    border-radius: 6px;
+    background: white;
+    color: #183950;
+    font: inherit;
+}
+.ce-contact textarea { resize: vertical; }
+.ce-contact__services { gap: 2px 12px; }
+.ce-contact__services label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    cursor: pointer;
+}
+.ce-contact input[type="checkbox"] { width: 18px; height: 18px; accent-color: #235075; }
+.ce-contact button {
+    justify-self: start;
+    padding: 12px 24px;
+    border: 0;
+    border-radius: 6px;
+    background: #235075;
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+.ce-contact button:disabled { opacity: .6; cursor: default; }
+.ce-contact :focus-visible { outline: 2px solid #08776c; outline-offset: 2px; }
+@media (min-width: 600px) {
+    .ce-contact__grid, .ce-contact__services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 900px) {
+    .ce-contact { grid-template-columns: 1fr 2fr; align-items: start; }
+}

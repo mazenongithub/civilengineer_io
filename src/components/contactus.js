@@ -1,319 +1,170 @@
-import React, { Component } from 'react'
-import { MyStylesheet } from './styles';
+import React, { Component } from 'react';
 import CivilEngineer from './civilengineer';
-import { checkedBox, submitButton, unCheckedBox } from './svg';
 import { SaveContactUs } from './actions/api';
+import './ContactUs.css';
+
+const fields = [
+    ['fullname', 'Full name', 'text', 'name'],
+    ['company', 'Company', 'text', 'organization'],
+    ['emailaddress', 'Email address', 'email', 'email'],
+    ['phonenumber', 'Phone number', 'tel', 'tel']
+];
+
+const services = [
+    ['geotechnical', 'Geotechnical engineering'],
+    ['projectmanagement', 'Project management'],
+    ['design', 'Design and specifications'],
+    ['construction', 'Construction support'],
+    ['customapp', 'Custom application']
+];
+
+const email = 'support@civilengineer.io';
 
 class ContactUs extends Component {
     constructor(props) {
         super(props);
-        this.state = { render: '', width: 0, height: 0, open: false, fullname: '', company: '', emailaddress: '', phonenumber: '', geotechnical: false, projectmanagement: false, design: false, construction: false, customapp: false, detail: '', message: '', captchaToken: null }
-        this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+        this.state = {
+            width: 0, height: 0, captchaToken: null,
+            sending: false, message: '', verificationError: ''
+        };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.widgetContainer = React.createRef();
     }
+
     componentDidMount() {
+        this.mounted = true;
         window.addEventListener('resize', this.updateWindowDimensions);
         this.updateWindowDimensions();
 
-        window.onTurnstileSuccess = (token) => {
-            this.setState({ captchaToken: token });
-        };
-
-        window.onTurnstileExpired = () => {
-            this.setState({ captchaToken: null });
-        };
-
-        if (window.turnstile) {
-            window.turnstile.render("#turnstile-container", {
-                sitekey: process.env.REACT_APP_TURNSTILE_SITE_KEY,
-                callback: (token) => {
-                    this.setState({ captchaToken: token });
-                },
-                "expired-callback": () => {
-                    this.setState({ captchaToken: null });
-                },
-                theme: "light"
-            });
+        if (window.turnstile?.render) {
+            this.renderWidget();
+        } else {
+            this.script = document.querySelector('script[src*="challenges.cloudflare.com/turnstile/"]');
+            if (this.script) {
+                this.script.addEventListener('load', this.renderWidget);
+                this.script.addEventListener('error', this.verificationFailed);
+            } else {
+                this.verificationFailed();
+            }
         }
     }
 
-
     componentWillUnmount() {
+        this.mounted = false;
         window.removeEventListener('resize', this.updateWindowDimensions);
-        if (window.turnstile) {
-            window.turnstile.remove("#turnstile-container");
-        }
-
-        delete window.onTurnstileSuccess;
-        delete window.onTurnstileExpired;
+        this.script?.removeEventListener('load', this.renderWidget);
+        this.script?.removeEventListener('error', this.verificationFailed);
+        if (this.widgetId != null) window.turnstile?.remove(this.widgetId);
     }
 
     updateWindowDimensions() {
         this.setState({ width: window.innerWidth, height: window.innerHeight });
     }
 
-    setField(field, value) {
-        this.setState({
-            [field]: value
+    verificationFailed = () => {
+        if (this.mounted) this.setState({
+            captchaToken: null,
+            verificationError: 'Verification is unavailable. Refresh the page or contact us by email.'
         });
     };
 
-    getField(field) {
-        return this.state[field];
-    };
-
-    getCheckboxIcon(field) {
-        return this.state[field] ? checkedBox() : unCheckedBox();
-    }
-
-    toggleField(field) {
-        this.setState((prevState) => ({
-            [field]: !prevState[field]
-        }));
-    };
-
-    async saveContactUs() {
+    renderWidget = () => {
         try {
-            const {
-                fullname,
-                company,
-                emailaddress,
-                phonenumber,
-                geotechnical,
-                projectmanagement,
-                design,
-                construction,
-                customapp,
-                detail,
-                captchaToken
-                
-            } = this.state;
-
-   
-
-            const values = {
-                fullname,
-                company,
-                emailaddress,
-                phonenumber,
-                geotechnical,
-                projectmanagement,
-                design,
-                construction,
-                customapp,
-                detail,
-                captchaToken
-            };
-
-            const response = await SaveContactUs(values);
-            const created = new Date(response.contactus.created).toLocaleTimeString();
-            const message = `${response.message} ${created}`
-            this.setState({
-                message: message || 'Message sent successfully'
+            this.widgetId = window.turnstile.render(this.widgetContainer.current, {
+                sitekey: process.env.REACT_APP_TURNSTILE_SITE_KEY,
+                theme: 'light',
+                size: 'flexible',
+                callback: token => this.setState({ captchaToken: token, verificationError: '' }),
+                'expired-callback': () => this.setState({ captchaToken: null }),
+                'error-callback': this.verificationFailed
             });
-
-        } catch (err) {
-            console.error('save contact us error:', err);
-            alert(`Unable to send message. ${err}`);
+        } catch {
+            this.verificationFailed();
         }
-    }
+    };
 
+    saveContactUs = async event => {
+        event.preventDefault();
+        const { captchaToken, sending } = this.state;
+        if (!captchaToken || sending) return;
+
+        const form = event.currentTarget;
+        const data = new FormData(form);
+        const values = { detail: data.get('detail'), captchaToken };
+        fields.forEach(([name]) => { values[name] = data.get(name); });
+        services.forEach(([name]) => { values[name] = data.has(name); });
+
+        this.setState({ sending: true, message: '' });
+        try {
+            const response = await SaveContactUs(values);
+            if (!response?.contactus) throw new Error('Submission was not confirmed');
+            if (this.mounted) {
+                form.reset();
+                this.setState({ message: response.message || 'Thank you. Your message has been sent.' });
+            }
+        } catch {
+            if (this.mounted) this.setState({
+                message: 'We could not confirm delivery. Your entries are still here. Please try again or email us.'
+            });
+        } finally {
+            if (this.mounted) {
+                this.setState({ sending: false, captchaToken: null });
+                window.turnstile?.reset(this.widgetId);
+            }
+        }
+    };
 
     render() {
-        const styles = MyStylesheet()
-        const civilengineer = new CivilEngineer();
-        const headerFont = civilengineer.getHeaderFont.call(this)
-        const regularFont = civilengineer.getRegularFont.call(this)
-        const buttonWidth = { width: '55px' }
-        const areaHeight = { minHeight: '200px' }
-        const submitWidth = { width: '100%', maxWidth: '225px' }
-        const getFlex = this.state.width > 900 ? styles.flex5 : styles.flex2
+        const fonts = new CivilEngineer();
+        const { sending, captchaToken, message, verificationError } = this.state;
+
         return (
-            <div style={{ ...styles.generalContainer, ...styles.padding15 }}>
+            <main className="ce-contact" style={fonts.getRegularFont.call(this)}>
+                <header>
+                    <h1 style={fonts.getHeaderFont.call(this)}>Contact Us</h1>
+                    <p>Tell us about your project or ask a question about a civilengineer.io application.</p>
+                    <a href={`mailto:${email}`}>{email}</a>
+                </header>
 
-                <div style={{ ...styles.generalContainer, ...styles.alignCenter, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <span style={{ ...headerFont, ...styles.boldFont, ...styles.themeColor }}>Contact Us</span>
-                </div>
+                <form onSubmit={this.saveContactUs}>
+                    <fieldset disabled={sending}>
+                        <legend>Your contact information</legend>
+                        <div className="ce-contact__grid">
+                            {fields.map(([name, label, type, autoComplete]) => (
+                                <label key={name}>
+                                    {label}
+                                    <input name={name} type={type} autoComplete={autoComplete} />
+                                </label>
+                            ))}
+                        </div>
+                    </fieldset>
 
-                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.themeColor }}>
-                    <span style={{ ...headerFont }}>Get in Touch with CivilEngineer.io</span>
-                </div>
+                    <fieldset disabled={sending}>
+                        <legend>Which services are you interested in?</legend>
+                        <div className="ce-contact__services">
+                            {services.map(([name, label]) => (
+                                <label key={name}>
+                                    <input type="checkbox" name={name} />
+                                    {label}
+                                </label>
+                            ))}
+                        </div>
+                    </fieldset>
 
-
-                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                    <span style={{ ...regularFont }}>Questions about geotechnical reports, project management, design tools, or custom applications? We’re here to help.</span>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                    <span style={{ ...regularFont }}>Whether you’re an engineer, contractor, developer, or public agency, our team supports planning, design, and construction with professional engineering services and modern web-based tools.</span>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.themeColor }}>
-                    <span style={{ ...headerFont }}>Email</span>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont }}>
-                    <a href="mailto:support@civilengineer.io" style={{ ...regularFont, ...styles.boldFont, ...styles.generalLink }}>mazen@civilengineer.io</a>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.themeColor }}>
-                    <span style={{ ...headerFont }}>Contact</span>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <span style={{ ...regularFont }}>Full Name</span>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <input type="text"
-                        value={this.getField("fullname")}
-                        onChange={event => { this.setField("fullname", event.target.value) }}
-                        style={{ ...regularFont, ...styles.generalField }} />
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <span style={{ ...regularFont }}>Company</span>
-                </div>
-
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <input type="text" style={{ ...regularFont, ...styles.generalField }}
-                        value={this.getField("company")}
-                        onChange={event => { this.setField("company", event.target.value) }} />
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <span style={{ ...regularFont }}>Email Address</span>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <input type="text" style={{ ...regularFont, ...styles.generalField }}
-                        value={this.getField("emailaddress")}
-                        onChange={event => { this.setField("emailaddress", event.target.value) }} />
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <span style={{ ...regularFont }}>Phone Number</span>
-                </div>
-
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <input type="text" style={{ ...regularFont, ...styles.generalField }}
-                        value={this.getField("phonenumber")}
-                        onChange={event => { this.setField("phonenumber", event.target.value) }} />
-                </div>
-
-
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <span style={{ ...regularFont }}>Service of Interest</span>
-                </div>
-
-                <div style={{ ...styles.generalFlex, ...styles.bottomMargin15, ...styles.generalFont }}>
-                    <div style={{ ...styles.flex1 }}>
-                        <button onClick={() => { this.toggleField("geotechnical") }}
-                            style={{ ...styles.generalButton, ...buttonWidth }}>{this.getCheckboxIcon("geotechnical")}</button>
-                    </div>
-                    <div style={{ ...styles.flex8, ...styles.generalFont }}>
-                        <span style={{ ...regularFont }}>Geotechnical Engineering</span>
-                    </div>
-                </div>
-
-
-                <div style={{ ...styles.generalFlex, ...styles.bottomMargin15, ...styles.generalFont }}>
-                    <div style={{ ...styles.flex1 }}>
-                        <button onClick={() => { this.toggleField("projectmanagement") }}
-                            style={{ ...styles.generalButton, ...buttonWidth }}>{this.getCheckboxIcon("projectmanagement")}</button>
-                    </div>
-                    <div style={{ ...styles.flex8, ...styles.generalFont }}>
-                        <span style={{ ...regularFont }}>Project Management</span>
-                    </div>
-                </div>
-
-
-                <div style={{ ...styles.generalFlex, ...styles.bottomMargin15, ...styles.generalFont }}>
-                    <div style={{ ...styles.flex1 }}>
-                        <button onClick={() => { this.toggleField("design") }}
-                            style={{ ...styles.generalButton, ...buttonWidth }}>{this.getCheckboxIcon("design")}</button>
-                    </div>
-                    <div style={{ ...styles.flex8, ...styles.generalFont }}>
-                        <span style={{ ...regularFont }}>Design and Specifications</span>
-                    </div>
-                </div>
-
-
-                <div style={{ ...styles.generalFlex, ...styles.bottomMargin15, ...styles.generalFont }}>
-                    <div style={{ ...styles.flex1 }}>
-                        <button onClick={() => { this.toggleField("construction") }}
-                            style={{ ...styles.generalButton, ...buttonWidth }}>{this.getCheckboxIcon("construction")}</button>
-                    </div>
-                    <div style={{ ...styles.flex8, ...styles.generalFont }}>
-                        <span style={{ ...regularFont }}>Construction Support</span>
-                    </div>
-                </div>
-
-
-                <div style={{ ...styles.generalFlex, ...styles.bottomMargin15, ...styles.generalFont }}>
-                    <div style={{ ...styles.flex1 }}>
-                        <button onClick={() => { this.toggleField("customapp") }}
-                            style={{ ...styles.generalButton, ...buttonWidth }}>{this.getCheckboxIcon("customapp")}</button>
-                    </div>
-                    <div style={{ ...styles.flex8, ...styles.generalFont }}>
-                        <span style={{ ...regularFont }}>Custom Application</span>
-                    </div>
-                </div>
-
-
-                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15 }}>
-                    <textarea style={{ ...regularFont, ...styles.generalFont, ...styles.generalField, ...areaHeight }}
-                        value={this.getField("detail")}
-                        onChange={event => { this.setField("detail", event.target.value) }} >
-
-                    </textarea>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.bottomMargin15 }}>
-                    <span style={{ ...regularFont }}>Message</span>
-                </div>
-
-                <div
-                    id="turnstile-container"
-                    style={{ marginBottom: "15px", textAlign: "center" }}
-                ></div>
-
-
-                <div style={{ ...styles.generalFlex }}>
-                    <div style={{ ...getFlex }}>
-                        &nbsp;
-                    </div>
-                    <div style={{ ...styles.flex1 }}>
-                        <button
-                            style={{
-                                ...styles.generalButton, ...submitWidth, opacity: this.state.captchaToken ? 1 : 0.5,
-                                cursor: this.state.captchaToken ? "pointer" : "not-allowed"
-                            }}
-                            disabled={!this.state.captchaToken}
-
-                            onClick={() => { this.saveContactUs() }}>
-                            {submitButton()}
-                        </button>
-                    </div>
-                </div>
-
-
-                <div style={{ ...styles.generalContainer, ...styles.bottomMargin15, ...styles.generalFont, ...styles.alignCenter }}>
-                    <span style={{ ...regularFont }}>{this.state.message}</span>
-                </div>
-
-
-
-
-
-
-
-            </div>
-
-        )
+                    <label>
+                        Your message
+                        <textarea name="detail" rows={5} disabled={sending} />
+                    </label>
+                    <div ref={this.widgetContainer} />
+                    {verificationError && <p role="alert">{verificationError}</p>}
+                    <button disabled={sending || !captchaToken} type="submit">
+                        {sending ? 'Sending…' : 'Send message'}
+                    </button>
+                    <div role="status">{message}</div>
+                </form>
+            </main>
+        );
     }
 }
 
-export default ContactUs
+export default ContactUs;

@@ -8,6 +8,7 @@ import About from "./components/about";
 import Footer from "./components/footer";
 import HowItWorks from "./components/howitworks";
 import ContactUs from "./components/contactus";
+import CustomApps from "./components/customapps";
 
 class App extends Component {
 
@@ -28,6 +29,7 @@ class App extends Component {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/howitworks" component={HowItWorks} />
                 <Route exact path ="/contactus" component={ContactUs} />
+                <Route exact path ="/customapps" component={CustomApps} />
               </Switch>
             </div>
           </main>

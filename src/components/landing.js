@@ -1,141 +1,212 @@
-import React, { Component } from 'react'
-import { MyStylesheet } from './styles';
-import CivilEngineer from './civilengineer';
-import { headerIconBanner, linkArrow } from './svg';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import CivilEngineer from './civilengineer';
+import '../App.css';
+
+// Conceptual artwork, intentionally not a screenshot or a construction detail.
+function EngineeringIllustration() {
+    return (
+        <div className="ce-drawing">
+            <div className="ce-drawing-bar"><span>GEOTECHNICAL ENGINEERING</span><span>CONCEPTUAL SECTION</span></div>
+            <svg viewBox="0 0 560 450" role="img" aria-label="Conceptual foundation section showing soil layers and an exploratory boring" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="ce-sand-pattern" width="17" height="17" patternUnits="userSpaceOnUse"><circle cx="3" cy="5" r="1" fill="#85cad2"/><circle cx="12" cy="12" r="1" fill="#85cad2"/></pattern>
+                    <pattern id="ce-clay-pattern" width="23" height="14" patternUnits="userSpaceOnUse"><path d="M2 5H13 M10 11H21" stroke="#8aafc0" strokeWidth="1"/></pattern>
+                    <pattern id="ce-gravel-pattern" width="30" height="24" patternUnits="userSpaceOnUse"><circle cx="7" cy="8" r="3" fill="none" stroke="#81c8cb"/><circle cx="22" cy="17" r="4" fill="none" stroke="#81c8cb"/></pattern>
+                </defs>
+                <g opacity=".15" stroke="#89c9d2" strokeWidth=".5">
+                    {[60,120,180,240,300,360,420,480].map(x => <line key={x} x1={x} y1="20" x2={x} y2="425"/>)}
+                    {[60,120,180,240,300,360,420].map(y => <line key={y} x1="20" y1={y} x2="540" y2={y}/>)}
+                </g>
+                <g fill="none" stroke="#d5eff3" strokeWidth="2">
+                    <path d="M108 160V69H316V160 M94 69L212 25L330 69Z M108 69H316"/>
+                    <rect x="132" y="91" width="47" height="44"/><path d="M155 91V135M132 113H179"/>
+                    <rect x="244" y="91" width="47" height="44"/><path d="M267 91V135M244 113H291"/>
+                    <rect x="196" y="108" width="34" height="52"/>
+                </g>
+                <g fill="#54c4c8" fillOpacity=".24" stroke="#70dadd" strokeWidth="2"><rect x="94" y="160" width="80" height="17"/><rect x="254" y="160" width="80" height="17"/></g>
+                <path d="M20 160H540" stroke="#80dad9" strokeWidth="2"/>
+                <path d="M20 161H540V245Q430 256 310 244T20 250Z" fill="#1c5569"/>
+                <path d="M20 161H540V245Q430 256 310 244T20 250Z" fill="url(#ce-sand-pattern)" opacity=".7"/>
+                <path d="M20 250Q160 240 310 244T540 245V336Q430 330 310 338T20 334Z" fill="#24465e"/>
+                <path d="M20 250Q160 240 310 244T540 245V336Q430 330 310 338T20 334Z" fill="url(#ce-clay-pattern)" opacity=".7"/>
+                <path d="M20 334Q160 342 310 338T540 336V425H20Z" fill="#173e55"/>
+                <path d="M20 334Q160 342 310 338T540 336V425H20Z" fill="url(#ce-gravel-pattern)" opacity=".7"/>
+                <g fill="none" stroke="#6abac8"><path d="M20 250Q160 240 310 244T540 245"/><path d="M20 334Q160 342 310 338T540 336"/></g>
+                <g fill="#bfdce6" fontSize="11" fontFamily="Arial, sans-serif"><text x="38" y="207">SAND</text><text x="38" y="293">SILTY CLAY</text><text x="38" y="385">DENSE GRAVEL</text></g>
+                <g fill="none" stroke="#70dadd"><path d="M133 155L120 125H45"/></g>
+                <text x="45" y="115" fill="#70dadd" fontSize="10" fontFamily="Arial, sans-serif">SHALLOW FOUNDATION</text>
+                <rect x="401" y="160" width="28" height="247" fill="#071a2b" stroke="#e1f5f5" strokeWidth="1.5"/>
+                <rect x="403" y="162" width="24" height="83" fill="#318f9c"/><rect x="403" y="245" width="24" height="91" fill="#587f95"/><rect x="403" y="336" width="24" height="69" fill="#3b647c"/>
+                <g stroke="#c2edf0"><path d="M401 245H429M401 336H429"/></g>
+                <rect x="379" y="126" width="73" height="25" rx="5" fill="#078f9b"/><text x="415" y="143" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">B-1</text>
+                <path d="M415 151V160" stroke="#70dadd" strokeDasharray="3 3"/>
+                <g fontSize="10" fontFamily="Arial, sans-serif" fill="#bedce7"><text x="448" y="166">0 ft</text><text x="448" y="248">10 ft</text><text x="448" y="339">20 ft</text><text x="448" y="410">30 ft</text></g>
+                <text x="535" y="443" fill="#90b7c5" fontSize="9" textAnchor="end" letterSpacing="1">NOT TO SCALE</text>
+            </svg>
+            <div className="ce-drawing-bar ce-drawing-bottom"><span>FOUNDATION • SUBSURFACE EXPLORATION</span><span>ILLUSTRATIVE ONLY</span></div>
+        </div>
+    );
+}
+
+const audiences = [
+    { icon: '◈', title: 'Geotechnical Clients', description: 'Geotechnical investigations, soil reports, foundation recommendations, and field engineering support—with convenient online access to project information.', tags: ['Investigations', 'Foundations', 'Reports'] },
+    { icon: '▤', title: 'Engineering Firms & Municipalities', description: 'Civil engineering support, customizable specifications, quantity takeoffs, and cost estimates for infrastructure, planning, and permitting.', tags: ['Design', 'Specifications', 'Estimates'] },
+    { icon: '◎', title: 'Project Managers', description: 'Coordinate teams, assign responsibilities, establish milestones, and organize schedules, tasks, budgets, and deliverables.', tags: ['Scheduling', 'Coordination', 'Delivery'] },
+    { icon: '▥', title: 'Construction Companies', description: 'Manage field documentation, labor, equipment, materials, job costs, and project progress from a connected workspace.', tags: ['Field Operations', 'Costs', 'Tracking'] },
+    { icon: '⌘', title: 'Custom Business Software', description: 'Practical web applications tailored to your workflows, including timesheets, invoicing, reporting, and specialized business processes.', tags: ['Web Applications', 'Automation', 'Cloud'] }
+];
+
+const capabilities = [
+    { icon: '◈', title: 'Geotechnical Engineering', text: 'Soil investigations, laboratory data, foundation analysis, seismic criteria, and engineering reports.' },
+    { icon: '▤', title: 'Engineering Design', text: 'Civil design support, specifications, quantity takeoffs, and construction estimates.' },
+    { icon: '◎', title: 'Project Management', text: 'Schedules, tasks, budgets, proposals, documents, and team coordination.' },
+    { icon: '▥', title: 'Construction Management', text: 'Field reporting, labor tracking, materials, equipment, and job cost records.' },
+    { icon: '⌘', title: 'Custom Applications', text: 'Purpose-built cloud software for engineering teams and other businesses.' },
+    { icon: '☁', title: 'Online Client Portal', text: 'Centralized access to reports, project data, records, and deliverables.' }
+];
+
+const advantages = [
+    { title: 'Professional Engineering Expertise', text: 'Technical understanding and practical project experience inform the services and software.' },
+    { title: 'Streamlined Project Delivery', text: 'Connected workflows reduce administrative friction and keep documents organized.' },
+    { title: 'Purpose-Built Digital Tools', text: 'Engineering calculations, reporting, and project management within a coordinated platform.' },
+    { title: 'Convenient Online Reporting', text: 'Give authorized teams access to the information and deliverables they need.' },
+    { title: 'Flexible Solutions', text: 'Support individual projects, consultants, contractors, and larger organizations.' }
+];
+
 
 class Landing extends Component {
-
     constructor(props) {
         super(props);
-        this.state = { render: '', width: 0, height: 0, open: false }
-        this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
-    }
-    componentDidMount() {
-        window.addEventListener('resize', this.updateWindowDimensions);
-        this.updateWindowDimensions();
+        this.state = {
+            width: 0,
+            height: 0
+        };
 
+        this.updateWindowDimensions =
+            this.updateWindowDimensions.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener(
+            'resize',
+            this.updateWindowDimensions
+        );
+        this.updateWindowDimensions();
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.updateWindowDimensions);
+        window.removeEventListener(
+            'resize',
+            this.updateWindowDimensions
+        );
     }
 
     updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        this.setState({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
     }
+
     render() {
-
-        const styles = MyStylesheet()
         const civilengineer = new CivilEngineer();
-        const headerFont = civilengineer.getHeaderFont.call(this)
-        const regularFont = civilengineer.getRegularFont.call(this)
-        const linkButton = { width: '60px' }
-
+        const regularFont = civilengineer.getRegularFont.call(this);
 
         return (
-            <div style={{ ...styles.generalContainer }}>
-                <div style={{ ...styles.generalContainer,  ...styles.alignCenter, ...styles.topMargin10, ...styles.generalFont, ...styles.bottomMargin15, ...styles.marginLeft15 }}>
-                    <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>Geotechnical & Civil Engineering Reports Delivered Online</span>
-                </div>
+            <main className="ce-landing" style={{ ...regularFont }}>
 
-                <div style={{ ...styles.generalContainer, ...styles.generalFont,  ...styles.padding15 }}>
-                    <span style={{ ...regularFont }}>Our mission is to empower engineers, contractors, agencies, and project managers to plan, design, and deliver successful projects using modern tools, automated workflows, and professional engineering services.</span>
-                </div>
-                
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>Who We Help</span>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont }}>
-                    <ul><li style={{ ...regularFont }}>Geotechnical Clients</li></ul>
-                </div>
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...regularFont }}>We provide fast, accurate geotechnical support—from soil reports and analysis to foundation recommendations and field documentation—delivered through a custom reporting platform with instant client access.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
-                </div>
-               
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont }}>
-                    <ul><li style={{ ...regularFont }}>Engineering Firms and Municipalities</li></ul>
-                </div>
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...regularFont }}>An intelligent specification writer offering full customization, complete spec sections, quantity take-offs, and bid schedules—supporting permitting, planning, and infrastructure design. Built for spec writers, engineers, and cost estimators. <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
-                </div>
-              
-
-                 <div style={{ ...styles.generalContainer, ...styles.generalFont }}>
-                    <ul><li style={{ ...regularFont }}>Project Managers</li></ul>
-                </div>
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...regularFont }}>Build your team, define roles, set milestones, and manage schedules, tasks, risks, and communication in one powerful PM dashboard—or hire us to manage the entire project.  <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
-                </div>
-               
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont }}>
-                    <ul><li style={{ ...regularFont }}>Construction Companies</li></ul>
-                </div>
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...regularFont }}>Our field engineering platform supports contractors from bid to payment. Manage labor, equipment, and materials, track schedules and actuals, and build real unit pricing data across every job. Digitally approved work orders ensure fast payment, while full customization adapts the system to your company. Join our contractor network to be added to projects. <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
-                </div>
-              
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont }}>
-                    <ul><li style={{ ...regularFont }}>Businesses Needing Custom Software</li></ul>
-                </div>
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15, ...styles.bottomMargin15 }}>
-                    <span style={{ ...regularFont }}>You name it—we build it. We’re passionate about using the web to create practical business solutions. Let us build a custom application tailored to your business, with reporting, timesheets, invoicing, accounting, and more—available online at your own branded URL.    <Link style={{ ...styles.generalLink }} to={'/'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Learn More </u></span></Link></span>
-                </div>
-
-                 <div style={{ ...styles.generalContainer,   ...styles.marginLeft15, ...styles.generalFont }}>
-                    <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>A Complete Engineering & Construction Platform</span>
-                </div>
-                <div style={{...styles.marginLeft15, ...styles.generalContainer, ...styles.generalFont}}>
-                    <ul style={{...regularFont}}>
-                    <li>Geotechnical Services / Apps</li>
-                    <li>Engineering Design / Specs / Estimates</li>
-                    <li>Project Management Tools</li>
-                    <li>Construction Management Tools</li>
-                    <li>Custom Web Apps</li>
-                    <li>Cloud-based client portal</li>
-                    </ul>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>Why CivilEngineer.io </span>
-                </div>
-
-                 <div style={{...styles.marginLeft15, ...styles.generalContainer, ...styles.generalFont}}>
-                    <ul style={{...regularFont}}>
-                    <li>Fast turnaround & real engineering support</li>
-                    <li>Clean, modern online portal</li>
-                    <li>Automated workflows built for real-world projects</li>
-                    <li>Consistent, trackable deliverables</li>
-                    <li>Scales from small projects to full programs</li>
-                    <li>Cloud-based client portal</li>
-                    </ul>
-                </div>
-
-                 <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.marginLeft15 }}>
-                    <span style={{ ...headerFont, ...styles.themeColor, ...styles.boldFont }}>Ready to streamline your projects?</span>
-                </div>
-
-                <div style={{ ...styles.generalContainer, ...styles.generalFont, ...styles.padding15 }}>
-                    <span style={{ ...regularFont }}>Engineering, design, project management, and construction tools—built into one unified platform. </span>
-                </div>
-                <div style={{ ...styles.generalFlex, ...styles.marginLeft15, ...styles.bottomMargin15 }}>
-                    <div style={{ ...styles.flex1, ...styles.generalFont, ...styles.regularColor }}>
-                        &nbsp; </div>
-                    <div style={{ ...styles.flex1, ...styles.generalFont, ...styles.regularColor }}>
-                        <Link style={{ ...styles.generalLink }} to={'/contactus'}><button style={{ ...styles.generalButton, ...linkButton }}>{linkArrow()}</button><span style={{ ...regularFont }}><u>Contact Us</u></span></Link>
+                <section className="ce-hero">
+                    <div className="ce-container ce-hero-grid">
+                        <div>
+                            <div className="ce-eyebrow">Engineering Meets Innovation</div>
+                            <h1>Geotechnical &amp; Civil Engineering, <span>Simplified.</span></h1>
+                            <p className="ce-hero-description">From geotechnical investigations and civil engineering design to project management and technical reports, CivilEngineer.io brings professional engineering services and digital tools together in one convenient platform.</p>
+                            <div className="ce-hero-actions">
+                                <Link className="ce-button primary" to="/contactus">Start Your Project <span aria-hidden="true">→</span></Link>
+                                <a className="ce-button secondary" href="#ce-platform">Explore Our Platform <span aria-hidden="true">↗</span></a>
+                            </div>
+                            <div className="ce-hero-note"><span>Engineering Expertise</span><span>Digital Project Delivery</span><span>Online Client Access</span></div>
+                        </div>
+                        <EngineeringIllustration />
                     </div>
-                </div>
-               
+                </section>
 
-            </div>
-        )
+                <section className="ce-section" id="ce-services">
+                    <div className="ce-container">
+                        <div className="ce-section-heading center">
+                            <div className="ce-eyebrow">Who We Help</div>
+                            <h2>Engineering solutions for every stage of your project.</h2>
+                            <p>Whether you need professional engineering services or better tools to manage your operations, we bring practical expertise and modern technology together.</p>
+                        </div>
+                        <div className="ce-service-grid">
+                            {audiences.map((item, i) => (
+                                <article className="ce-service-card" key={item.title}>
+                                    <div className="ce-card-top"><span className="ce-card-icon" aria-hidden="true">{item.icon}</span><span className="ce-card-number">{String(i + 1).padStart(2, '0')}</span></div>
+                                    <h3>{item.title}</h3><p>{item.description}</p>
+                                    <div className="ce-tags">{item.tags.map(tag => <span className="ce-tag" key={tag}>{tag}</span>)}</div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="ce-section ce-capabilities" id="ce-platform">
+                    <div className="ce-container">
+                        <div className="ce-section-heading">
+                            <div className="ce-eyebrow">The Platform</div>
+                            <h2>A complete engineering &amp; construction ecosystem.</h2>
+                            <p>Specialized engineering applications, project management solutions, and cloud-based reporting tools designed around real engineering workflows.</p>
+                        </div>
+                        <div className="ce-capability-grid">
+                            {capabilities.map(item => (
+                                <article className="ce-capability" key={item.title}>
+                                    <div className="ce-capability-icon" aria-hidden="true">{item.icon}</div>
+                                    <h3>{item.title}</h3><p>{item.text}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="ce-section">
+                    <div className="ce-container">
+                        <div className="ce-section-heading">
+                            <div className="ce-eyebrow">Our Advantage</div>
+                            <h2>Built by engineers. Designed for real projects.</h2>
+                        </div>
+                        <div className="ce-about-grid">
+                            <div className="ce-about-panel">
+                                <div className="ce-about-panel-label">Engineering + Technology</div>
+                                <h3>Real-world engineering experience meets intelligent digital solutions.</h3>
+                                <p>CivilEngineer.io combines professional civil and geotechnical engineering experience with purpose-built web technology.</p>
+                                <p>Our goal is simple: help clients, engineers, and project teams work more efficiently, maintain better project records, and deliver high-quality results.</p>
+                            </div>
+                            <div className="ce-advantages">
+                                {advantages.map(item => (
+                                    <div className="ce-advantage" key={item.title}>
+                                        <span className="ce-check" aria-hidden="true">✓</span>
+                                        <div><h4>{item.title}</h4><p>{item.text}</p></div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="ce-cta">
+                    <div className="ce-container">
+                        <div className="ce-eyebrow">Let's Get Started</div>
+                        <h2>Ready to move your project forward?</h2>
+                        <p>From professional engineering services to specialized software and project management solutions, we're ready to help you build a better workflow.</p>
+                        <Link className="ce-button light" to="/contactus">Contact CivilEngineer.io <span aria-hidden="true">→</span></Link>
+                    </div>
+                </section>
+
+                <div className="ce-footer-note"><div className="ce-container">CivilEngineer.io — Engineering Expertise. Digital Innovation. Better Project Delivery.</div></div>
+            </main>
+        );
     }
-
-
 }
 
 export default Landing;

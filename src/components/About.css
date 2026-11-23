@@ -1,0 +1,212 @@
+.ce-about {
+    max-width: 1080px;
+    margin-inline: auto;
+    padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem);
+    box-sizing: border-box;
+    color: #10283b;
+}
+
+.ce-about__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.65fr);
+    grid-template-areas:
+        "portrait header"
+        "portrait bio";
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    column-gap: clamp(2rem, 6vw, 5rem);
+    row-gap: 1.5rem;
+}
+
+.ce-about__header {
+    grid-area: header;
+    padding-block-end: 1.25rem;
+    border-block-end: 1px solid #dae5e8;
+}
+
+.ce-about__header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+}
+
+.ce-about__role {
+    margin: 0.65rem 0 0;
+    color: #235075;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.ce-about__portrait {
+    grid-area: portrait;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.ce-about__bio {
+    grid-area: bio;
+    max-width: 65ch;
+    color: #334b5c;
+}
+
+.ce-about__bio p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+.ce-about__bio p + p {
+    margin-block-start: 1rem;
+}
+
+.ce-about__bio h2 {
+    margin: 1.75rem 0 0.65rem;
+    color: #10283b;
+    font-size: 1.2rem;
+    line-height: 1.35;
+}
+
+/* Mobile navigation drawer */
+.site-mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  color: #10283b;
+  font-size: 16px;
+}
+
+.site-mobile-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(16 40 59 / 48%);
+}
+
+.site-mobile-drawer {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(88vw, 360px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px 16px calc(24px + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: -12px 0 32px rgb(16 40 59 / 18%);
+}
+
+.site-mobile-drawer nav {
+  display: grid;
+  gap: 4px;
+}
+
+.site-mobile-drawer a,
+.site-mobile-drawer button {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #244f74;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: none;
+}
+
+.site-mobile-drawer button {
+  cursor: pointer;
+}
+
+.site-mobile-drawer a:hover,
+.site-mobile-drawer button:hover,
+.site-mobile-drawer .site-nav-toggle[aria-expanded="true"] {
+  background: #eef3f8;
+}
+
+.site-mobile-drawer a:focus-visible,
+.site-mobile-drawer button:focus-visible {
+  outline: 2px solid #244f74;
+  outline-offset: 2px;
+}
+
+.site-mobile-drawer .site-mobile-close {
+  gap: 8px;
+  margin: 0 0 12px auto;
+  background: #eef3f8;
+}
+
+.site-mobile-close span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.site-mobile-drawer .site-nav-toggle {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.site-mobile-drawer .site-nav-chevron {
+  width: 7px;
+  height: 7px;
+  margin-right: 4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.site-mobile-drawer
+.site-nav-toggle[aria-expanded="true"] .site-nav-chevron {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.site-mobile-drawer .site-nav-accordion {
+  margin: 2px 0 6px 12px;
+  padding-left: 8px;
+  border-left: 2px solid #dce7ef;
+}
+
+.site-mobile-drawer .site-nav-accordion a {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.site-mobile-drawer .site-nav-cta {
+  justify-content: center;
+  margin-top: 12px;
+  background: #244f74;
+  color: #fff;
+}
+
+.site-mobile-drawer .site-nav-cta:hover {
+  background: #193b59;
+}
+
+
+
+@media (max-width: 700px) {
+    .ce-about__layout {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "header"
+            "portrait"
+            "bio";
+        grid-template-rows: auto;
+    }
+
+    .ce-about__portrait {
+        max-width: 300px;
+        justify-self: center;
+    }
+}
+
+@media (min-width: 900px) {
+  .site-mobile-menu {
+    display: none;
+  }
+}
